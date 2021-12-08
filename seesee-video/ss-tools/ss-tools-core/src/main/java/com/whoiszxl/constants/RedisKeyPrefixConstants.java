@@ -11,4 +11,6 @@ public class RedisKeyPrefixConstants {
 
     public static final String ADMIN_PRIVILEGE_PREFIX = "admin:privilege:";
 
+    public static final String VIDEO_PREFIX = "video:";
+
 }

@@ -143,9 +143,11 @@ DROP TABLE IF EXISTS `vms_bgmusic`;
 CREATE TABLE `vms_bgmusic`(
     `id`                        bigint(11) NOT NULL COMMENT '背景音乐主键ID',
     `music_name`                varchar(100) NOT NULL COMMENT '音乐名',
+    `singer`                    varchar(100) NOT NULL COMMENT '歌手',
+    `cover`                     varchar(255) NOT NULL COMMENT '音乐封面',
     `music_composer`            varchar(100) NOT NULL COMMENT '作曲者',
     `music_lyricist`            varchar(100) NOT NULL COMMENT '作词者',
-    `music_copyright`           varchar(300) NOT NULL COMMENT '音乐版权',
+    `music_copyright`           varchar(255) NOT NULL COMMENT '音乐版权',
     `music_seconds`             float(6,2) DEFAULT NULL COMMENT '视频秒数',
     `version`                   bigint(20) unsigned NOT NULL DEFAULT '1' COMMENT '乐观锁',
     `status`                    tinyint(3) DEFAULT 0 COMMENT '业务状态',
@@ -171,6 +173,21 @@ CREATE TABLE `vms_video_counter`(
     `updated_at`                datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`video_id`)
 ) ENGINE = InnoDB CHARSET = utf8mb4 COMMENT '视频计数表';
+
+DROP TABLE IF EXISTS `vms_member_like`;
+CREATE TABLE `vms_member_like`(
+    `like_type`                 tinyint(2) NOT NULL DEFAULT 1 COMMENT '点赞类型： 1:短视频 2:评论',
+    `like_id`                   bigint(11) NOT NULL DEFAULT 1 COMMENT '点赞类型相关记录的主键ID',
+    `version`                   bigint(20) unsigned NOT NULL DEFAULT '1' COMMENT '乐观锁',
+    `status`                    tinyint(3) DEFAULT 0 COMMENT '业务状态',
+    `is_deleted`                tinyint(3) DEFAULT 0 COMMENT '逻辑删除 1: 已删除， 0: 未删除',
+    `created_by`                varchar(50) NOT NULL COMMENT '创建者',
+    `updated_by`                varchar(50) NOT NULL COMMENT '更新者',
+    `created_at`                datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at`                datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`video_id`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COMMENT '视频计数表';
+
 
 
 DROP TABLE IF EXISTS `vms_video_watch_history`;

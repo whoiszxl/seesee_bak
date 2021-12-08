@@ -1,4 +1,4 @@
-package com.whoiszxl.log;
+package com.whoiszxl.config;
 
 import com.whoiszxl.logger.entity.OptLogDTO;
 import lombok.extern.slf4j.Slf4j;

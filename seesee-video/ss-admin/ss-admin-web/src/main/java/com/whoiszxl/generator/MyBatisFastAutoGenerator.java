@@ -21,7 +21,10 @@ public class MyBatisFastAutoGenerator {
     //需要配置
     private static final String AUTHOR = "whoiszxl";
     private static final String PACKAGE_NAME = "com.whoiszxl";
-    private static final String DB_TABLES = "ums_member";
+    private static final String[] DB_TABLES = new String[]{
+            "vms_bgmusic", "vms_video", "vms_video_comment", "vms_video_counter",
+            "vms_video_watch_history"
+    };
     private static final Boolean ENABLE_SWAGGER = true;
 
     public static void main(String[] args) {
@@ -50,8 +53,8 @@ public class MyBatisFastAutoGenerator {
 
         //过滤表前缀
         strategyConfigBuilder.addTablePrefix("sys_", "admin_", "oms_", "ums_", "vms_", "search_", "fms_");
-        // 设置需要映射的表名  用逗号分割
-        strategyConfigBuilder.addInclude(DB_TABLES.split(","));
+        // 设置需要映射的表名
+        strategyConfigBuilder.addInclude(DB_TABLES);
         // 下划线转驼峰
         strategyConfigBuilder.entityBuilder().naming(NamingStrategy.underline_to_camel);
         strategyConfigBuilder.entityBuilder().columnNaming(NamingStrategy.underline_to_camel);

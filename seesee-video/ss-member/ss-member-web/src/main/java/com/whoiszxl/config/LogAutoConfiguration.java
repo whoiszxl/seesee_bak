@@ -1,4 +1,4 @@
-package com.whoiszxl.log;
+package com.whoiszxl.config;
 
 import com.whoiszxl.logger.event.SysLogListener;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

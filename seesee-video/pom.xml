@@ -13,6 +13,7 @@
         <module>ss-member</module>
         <module>ss-admin</module>
         <module>ss-gateway</module>
+        <module>ss-video</module>
     </modules>
     <packaging>pom</packaging>
 

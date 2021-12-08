@@ -5,5 +5,14 @@
                              http://dozermapper.github.io/schema/bean-mapping.xsd">
     <!--
     使用map-id指定映射的标识，在程序中通过此标识来确定使用当前这个映射关系
+    通过配置 a b 两个类，然后指定a b类不同的字段进行映射
     -->
+<!--    <mapping date-format="yyyy-MM-dd" map-id="addressMapping">-->
+<!--        <class-a>com.whoiszxl.bean.Address</class-a>-->
+<!--        <class-b>com.whoiszxl.bean.AddressDTO</class-b>-->
+<!--        <field>-->
+<!--            <a>province</a>-->
+<!--            <b>myProvince</b>-->
+<!--        </field>-->
+<!--    </mapping>-->
 </mappings>

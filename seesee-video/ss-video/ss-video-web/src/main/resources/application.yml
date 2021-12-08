@@ -1,10 +1,10 @@
 
 server:
-  port: 10001
+  port: 10004
 
 spring:
   application:
-    name: ss-member-web
+    name: ss-video-web
   profiles:
     active: dev
   cloud:
@@ -31,7 +31,7 @@ spring:
 seesee:
   swagger2:
     enabled: true
-    title: member-在线接口文档
+    title: video-在线接口文档
     base-package: com.whoiszxl.controller
   log:
     enabled: true
