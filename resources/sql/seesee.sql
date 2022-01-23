@@ -52,6 +52,24 @@ CREATE TABLE `ums_member_info`(
     PRIMARY KEY (`member_id`)
 ) ENGINE = InnoDB CHARSET = utf8mb4 COMMENT '会员详情表';
 
+
+DROP TABLE IF EXISTS `ums_member_blacklist`;
+CREATE TABLE `ums_member_blacklist` (
+    `id`                        bigint(11) NOT NULL COMMENT '主键ID',
+    `member_id`                 bigint(11) NOT NULL COMMENT '会员ID',
+    `black_member_id`           bigint(11) NOT NULL COMMENT '黑名单会员ID',
+    `version`                   bigint(20) unsigned NOT NULL DEFAULT '1' COMMENT '乐观锁',
+    `status`                    tinyint(3) DEFAULT 0 COMMENT '业务状态',
+    `is_deleted`                tinyint(3) DEFAULT 0 COMMENT '逻辑删除 1: 已删除， 0: 未删除',
+    `created_by`                varchar(50) NOT NULL COMMENT '创建者',
+    `updated_by`                varchar(50) NOT NULL COMMENT '更新者',
+    `created_at`                datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at`                datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_member_id` (`member_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='会员黑名单表';
+
+
 DROP TABLE IF EXISTS `ums_member_follower`;
 CREATE TABLE `ums_member_follower`(
     `id`                        bigint(11) NOT NULL COMMENT '主键ID',
@@ -65,7 +83,7 @@ DROP TABLE IF EXISTS `ums_member_attention`;
 CREATE TABLE `ums_member_attention`(
     `id`                        bigint(11) NOT NULL COMMENT '主键ID',
     `member_id`                 bigint(11) NOT NULL COMMENT '用户ID',
-    `attention_id`              bigint(11) NOT NULL COMMENT '粉丝ID',
+    `attention_id`              bigint(11) NOT NULL COMMENT '被关注者ID',
     PRIMARY KEY (`id`),
     UNIQUE KEY `uni_idx_member_id` (`member_id`)
 ) ENGINE = InnoDB CHARSET = utf8mb4 COMMENT '会员关注表';
@@ -88,8 +106,6 @@ CREATE TABLE `ums_member_report`(
     `updated_at`                datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB CHARSET = utf8mb4 COMMENT '会员举报表';
-
-
 
 
 
