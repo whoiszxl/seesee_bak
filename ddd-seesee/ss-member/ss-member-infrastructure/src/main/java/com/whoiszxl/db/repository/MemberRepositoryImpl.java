@@ -23,13 +23,16 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Autowired
     private MemberMapper memberMapper;
 
+    @Autowired
+    private MemberConverter memberConverter;
+
     @Override
     public Member byUsername(String username) {
         MemberPO memberPO = memberMapper.selectOne(Wrappers.<MemberPO>lambdaQuery().eq(MemberPO::getUsername,username));
         if(Objects.isNull(memberPO)){
             return null;
         }
-        return MemberConverter.deserialize(memberPO);
+        return memberConverter.deserialize(memberPO);
     }
 
     @Override
@@ -43,7 +46,7 @@ public class MemberRepositoryImpl implements MemberRepository {
         if(Objects.isNull(memberPO)) {
             return null;
         }
-        return MemberConverter.deserialize(memberPO);
+        return memberConverter.deserialize(memberPO);
     }
 
     @Override

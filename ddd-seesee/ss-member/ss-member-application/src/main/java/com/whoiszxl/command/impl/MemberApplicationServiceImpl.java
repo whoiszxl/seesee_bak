@@ -6,6 +6,7 @@ import com.whoiszxl.aggregate.repository.MemberRepository;
 import com.whoiszxl.command.MemberApplicationService;
 import com.whoiszxl.command.cmd.MemberLoginCommand;
 import com.whoiszxl.command.cmd.UpdateMemberCommand;
+import com.whoiszxl.db.converter.MemberConverter;
 import com.whoiszxl.event.DomainEventPublisher;
 import com.whoiszxl.event.MemberLoginSuccessEvent;
 import com.whoiszxl.utils.AssertUtils;
@@ -39,6 +40,9 @@ public class MemberApplicationServiceImpl implements MemberApplicationService {
     @Autowired
     private DomainEventPublisher domainEventPublisher;
 
+    @Autowired
+    private MemberConverter memberConverter;
+
 
     @Override
     public void updateMemberInfo(UpdateMemberCommand updateMemberCommand) {
@@ -56,10 +60,10 @@ public class MemberApplicationServiceImpl implements MemberApplicationService {
         member.login();
 
         //3. 更新最后的登录时间
-        member.updateLastLoginTime();
+        //member.updateLastLoginTime();
 
         //4. 发布登录成功的领域事件，处理后续的活跃度更新，登录时间更新等操作
-        domainEventPublisher.publishMemberLoginSuccessEvent(new MemberLoginSuccessEvent(member.getId()));
+        //domainEventPublisher.publishMemberLoginSuccessEvent(new MemberLoginSuccessEvent(member.getId()));
 
         //5. 返回token
         return member.getCurrentToken();

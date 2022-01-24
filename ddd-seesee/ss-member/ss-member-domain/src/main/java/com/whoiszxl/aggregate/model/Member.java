@@ -63,10 +63,6 @@ public class Member implements AggregateRoot {
     @ApiModelProperty("会员详细信息")
     private MemberInfo memberInfo;
 
-    public String getPassword() {
-        return null;
-    }
-
     public void login() {
         AuthUtils.login(this.id);
     }

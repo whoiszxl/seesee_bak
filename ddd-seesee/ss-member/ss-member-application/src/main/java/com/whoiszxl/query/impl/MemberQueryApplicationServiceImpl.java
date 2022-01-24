@@ -1,8 +1,6 @@
 package com.whoiszxl.query.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.whoiszxl.aggregate.model.MemberInfo;
-import com.whoiszxl.auth.AuthUtils;
 import com.whoiszxl.db.mapper.MemberInfoMapper;
 import com.whoiszxl.db.mapper.MemberMapper;
 import com.whoiszxl.db.model.MemberInfoPO;
@@ -11,6 +9,7 @@ import com.whoiszxl.dozer.DozerUtils;
 import com.whoiszxl.query.MemberQueryApplicationService;
 import com.whoiszxl.query.model.response.MemberResponse;
 import com.whoiszxl.utils.AssertUtils;
+import com.whoiszxl.utils.AuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
