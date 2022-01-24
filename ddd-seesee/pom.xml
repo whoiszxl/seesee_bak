@@ -78,6 +78,8 @@
         <bitwalker.version>1.21</bitwalker.version>
         <maven.test.skip>true</maven.test.skip>
         <p6spy.version>3.8.7</p6spy.version>
+        <ttl.version>2.2.0</ttl.version>
+        <rocketmq.version>2.1.1</rocketmq.version>
     </properties>
 
     <!-- springboot版本 -->
@@ -254,13 +256,6 @@
                 <version>${dozer.version}</version>
             </dependency>
 
-            <!-- swagger 相关依赖 -->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
@@ -272,6 +267,18 @@
                 <groupId>com.github.ben-manes.caffeine</groupId>
                 <artifactId>caffeine</artifactId>
                 <version>${caffeine.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${ttl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
             </dependency>
 
         </dependencies>

@@ -1,0 +1,14 @@
+package com.whoiszxl.ability.member.cmd;
+
+import com.whoiszxl.model.ddd.Command;
+import lombok.Data;
+
+/**
+ * TODO
+ *
+ * @author whoiszxl
+ * @date 2022/1/24
+ */
+@Data
+public class CreateMemberAbilityCommand implements Command {
+}

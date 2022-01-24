@@ -22,5 +22,17 @@
             <artifactId>ss-member-infrastructure</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.whoiszxl</groupId>
+            <artifactId>ss-base</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.whoiszxl</groupId>
+            <artifactId>ss-member-domain</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 </project>

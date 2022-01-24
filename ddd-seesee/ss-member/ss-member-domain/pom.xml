@@ -22,5 +22,12 @@
             <artifactId>ss-base</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+        <!-- swagger3文档 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

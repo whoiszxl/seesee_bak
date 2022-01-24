@@ -1,6 +1,8 @@
 package com.whoiszxl.utils;
 
 import com.whoiszxl.exception.customize.AssertException;
+import com.whoiszxl.exception.customize.ValidateException;
+import com.whoiszxl.model.result.ResponseResult;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
@@ -18,7 +20,7 @@ public class AssertUtils {
      */
     public static void isTrue(boolean flag, String message) {
         if (!flag) {
-            throw new AssertException(message);
+            throw new ValidateException(ResponseResult.buildError(message));
         }
     }
 
@@ -30,7 +32,7 @@ public class AssertUtils {
      */
     public static void isFalse(boolean flag, String message) {
         if (flag) {
-            throw new AssertException(message);
+            throw new ValidateException(ResponseResult.buildError(message));
         }
     }
 
