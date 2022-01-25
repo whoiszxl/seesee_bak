@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.whoiszxl.aggregate.model.Member;
 import com.whoiszxl.aggregate.repository.MemberRepository;
 import com.whoiszxl.db.converter.MemberConverter;
+import com.whoiszxl.db.mapper.MemberInfoMapper;
 import com.whoiszxl.db.mapper.MemberMapper;
+import com.whoiszxl.db.model.MemberInfoPO;
 import com.whoiszxl.db.model.MemberPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,6 +26,9 @@ public class MemberRepositoryImpl implements MemberRepository {
     private MemberMapper memberMapper;
 
     @Autowired
+    private MemberInfoMapper memberInfoMapper;
+
+    @Autowired
     private MemberConverter memberConverter;
 
     @Override
@@ -32,12 +37,13 @@ public class MemberRepositoryImpl implements MemberRepository {
         if(Objects.isNull(memberPO)){
             return null;
         }
-        return memberConverter.deserialize(memberPO);
+        return memberConverter.poToDomain(memberPO);
     }
 
     @Override
     public void delete(Long id) {
         memberMapper.deleteById(id);
+        memberInfoMapper.delete(Wrappers.<MemberInfoPO>lambdaQuery().eq(MemberInfoPO::getMemberId, id));
     }
 
     @Override
@@ -46,11 +52,12 @@ public class MemberRepositoryImpl implements MemberRepository {
         if(Objects.isNull(memberPO)) {
             return null;
         }
-        return memberConverter.deserialize(memberPO);
+        return memberConverter.poToDomain(memberPO);
     }
 
     @Override
     public Member save(Member member) {
+        MemberPO memberPO = memberConverter.domainToPo(member);
         return null;
     }
 

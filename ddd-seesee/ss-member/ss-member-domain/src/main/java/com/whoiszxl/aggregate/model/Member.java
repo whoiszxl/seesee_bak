@@ -3,13 +3,9 @@ package com.whoiszxl.aggregate.model;
 import com.whoiszxl.model.ddd.AggregateRoot;
 import com.whoiszxl.utils.AuthUtils;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
-import java.time.LocalDateTime;
 
 /**
  * 会员聚合根
@@ -18,6 +14,7 @@ import java.time.LocalDateTime;
  * @date 2022/1/24
  */
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -60,9 +57,6 @@ public class Member implements AggregateRoot {
     @ApiModelProperty("业务状态")
     private Integer status;
 
-    @ApiModelProperty("会员详细信息")
-    private MemberInfo memberInfo;
-
     public void login() {
         AuthUtils.login(this.id);
     }
@@ -71,8 +65,7 @@ public class Member implements AggregateRoot {
         return AuthUtils.getToken();
     }
 
-
-    public void updateLastLoginTime() {
-        this.memberInfo.setLastLogin(LocalDateTime.now());
+    public void bindMemberId(Long memberId) {
+        this.id = memberId;
     }
 }

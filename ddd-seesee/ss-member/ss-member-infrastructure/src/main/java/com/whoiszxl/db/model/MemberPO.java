@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.Version;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -18,7 +20,8 @@ import java.time.LocalDateTime;
  * @author whoiszxl
  * @since 2021-12-08
  */
-@Data
+@Getter
+@Setter
 @TableName("ums_member")
 @ApiModel(value = "Member对象", description = "会员表")
 public class MemberPO implements Serializable {

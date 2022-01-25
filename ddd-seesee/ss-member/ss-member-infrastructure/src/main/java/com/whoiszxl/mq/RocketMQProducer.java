@@ -23,9 +23,9 @@ public class RocketMQProducer {
 
     @Autowired
     public RocketMQProducer(RocketMQProperties rocketMQProperties) {
-        producer = new DefaultMQProducer(RocketMQConstant.MEMBER_DEFAULT_PRODUCER_GROUP);
-        producer.setNamesrvAddr(rocketMQProperties.getNameServer());
-        start();
+//        producer = new DefaultMQProducer(RocketMQConstant.MEMBER_DEFAULT_PRODUCER_GROUP);
+//        producer.setNamesrvAddr(rocketMQProperties.getNameServer());
+//        start();
     }
 
     public DefaultMQProducer getProducer() {

@@ -23,6 +23,7 @@ spring:
     hikari:
       connection-timeout: 60000
       max-lifetime: 60000
+      minimum-idle: 10
 
   redis:
     host: aliyun.whoiszxl.com
@@ -32,6 +33,7 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
 
 seesee:
   swagger2:
@@ -93,3 +95,5 @@ dozer:
   mapping-files:
     - classpath:dozer/biz.dozer.xml
 
+rocketmq:
+  name-server: 159.75.31.203:9876

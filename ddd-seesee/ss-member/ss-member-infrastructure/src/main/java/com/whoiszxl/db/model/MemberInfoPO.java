@@ -1,13 +1,12 @@
 package com.whoiszxl.db.model;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -27,6 +26,7 @@ public class MemberInfoPO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId
     @ApiModelProperty("用户ID")
     private Long memberId;
 

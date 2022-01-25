@@ -1,6 +1,6 @@
 package com.whoiszxl.aggregate.model;
 
-import com.whoiszxl.model.ddd.Entity;
+import com.whoiszxl.model.ddd.AggregateRoot;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @date 2022/1/24
  */
 @Data
-public class MemberInfo implements Entity {
+public class MemberInfo implements AggregateRoot {
 
     @ApiModelProperty("用户ID")
     private Long memberId;
@@ -57,4 +57,7 @@ public class MemberInfo implements Entity {
     @ApiModelProperty("业务状态")
     private Integer status;
 
+    public void bindMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
 }

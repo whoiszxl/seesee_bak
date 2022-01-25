@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 /**
  * 更新会员信息指令
@@ -17,13 +17,8 @@ import javax.validation.constraints.NotBlank;
 @ApiModel("更新会员信息指令")
 public class UpdateMemberCommand implements Command {
 
-    @NotBlank(message = "用户名不允许为空")
     @ApiModelProperty("用户名")
     private String username;
-
-    @NotBlank(message = "密码不允许为空")
-    @ApiModelProperty("密码")
-    private String password;
 
     @ApiModelProperty("头像")
     private String avatar;
@@ -33,5 +28,26 @@ public class UpdateMemberCommand implements Command {
 
     @ApiModelProperty("真实姓名")
     private String realName;
+
+    @ApiModelProperty("性别(0:未知 1:男；2:女)")
+    private Boolean gender;
+
+    @ApiModelProperty("生日")
+    private LocalDateTime birthday;
+
+    @ApiModelProperty("国家")
+    private String country;
+
+    @ApiModelProperty("省份")
+    private String province;
+
+    @ApiModelProperty("城市")
+    private String city;
+
+    @ApiModelProperty("区域")
+    private String district;
+
+    @ApiModelProperty("学校")
+    private String school;
 
 }
