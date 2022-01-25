@@ -4,6 +4,8 @@ import com.whoiszxl.exception.ExceptionCatcher;
 import com.whoiszxl.model.result.ResponseResult;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Field;
+
 /**
  * 校验参数有效性工具类
  *
@@ -41,6 +43,15 @@ public class ValidateUtils {
         }
     }
 
+    public static boolean checkObjFieldHaveValue(Object obj) throws IllegalAccessException {
+        for(Field f : obj.getClass().getDeclaredFields()){
+            f.setAccessible(true);
+            if(f.get(obj) != null){
+                return true;
+            }
+        }
+        return false;
+    }
 
     private ValidateUtils() {}
 }

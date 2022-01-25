@@ -1,6 +1,7 @@
 package com.whoiszxl.aggregate.model;
 
 import com.whoiszxl.model.ddd.AggregateRoot;
+import com.whoiszxl.utils.ValidateUtils;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -59,5 +60,13 @@ public class MemberInfo implements AggregateRoot {
 
     public void bindMemberId(Long memberId) {
         this.memberId = memberId;
+    }
+
+    public boolean checkFieldHaveValue() {
+        try {
+            return ValidateUtils.checkObjFieldHaveValue(this);
+        } catch (IllegalAccessException e) {
+            return false;
+        }
     }
 }

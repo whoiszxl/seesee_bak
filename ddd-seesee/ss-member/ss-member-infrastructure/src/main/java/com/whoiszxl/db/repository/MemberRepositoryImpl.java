@@ -58,7 +58,12 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public Member save(Member member) {
         MemberPO memberPO = memberConverter.domainToPo(member);
-        return null;
+        if(Objects.isNull(memberPO.getId())) {
+            memberMapper.insert(memberPO);
+        }else {
+            memberMapper.updateById(memberPO);
+        }
+        return member;
     }
 
 }

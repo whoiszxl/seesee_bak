@@ -72,10 +72,17 @@ public class MemberApplicationServiceImpl implements MemberApplicationService {
         //将请求命令转换为领域模型，再通过仓储服务进行更新
         Member updateMember = memberCommandConverter.commandToDomain(updateMemberCommand);
         MemberInfo updateMemberInfo = memberInfoCommandConverter.commandToDomain(updateMemberCommand);
-        updateMember.bindMemberId(memberId);
-        updateMemberInfo.bindMemberId(memberId);
-        memberRepository.save(updateMember);
-        memberInfoRepository.save(updateMemberInfo);
+
+        //如果存在修改值则更新
+        if(updateMember.checkFieldHaveValue()) {
+            updateMember.bindMemberId(memberId);
+            memberRepository.save(updateMember);
+        }
+
+        if(updateMemberInfo.checkFieldHaveValue()) {
+            updateMemberInfo.bindMemberId(memberId);
+            memberInfoRepository.save(updateMemberInfo);
+        }
 
         //发布用户修改的领域事件
     }
