@@ -1,10 +1,12 @@
 package com.whoiszxl.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.whoiszxl.command.VideoApplicationService;
 import com.whoiszxl.command.cmd.PublishVideoCommand;
 import com.whoiszxl.model.query.PageQuery;
 import com.whoiszxl.model.result.ResponseResult;
 import com.whoiszxl.query.VideoQueryApplicationService;
+import com.whoiszxl.query.model.dto.VideoDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,25 +37,25 @@ public class VideoController {
     }
 
     @PostMapping("/list")
-    @ApiOperation(value = "分页查询当前用户的发布视频列表", notes = "分页查询当前用户的发布视频列表", response = Boolean.class)
-    public ResponseResult<Boolean> videoList(@RequestBody PageQuery pageQuery) {
-        videoQueryApplicationService.feedList(pageQuery);
-        return ResponseResult.buildSuccess();
+    @ApiOperation(value = "分页查询当前用户的发布视频列表", notes = "分页查询当前用户的发布视频列表", response = VideoDTO.class)
+    public ResponseResult<IPage<VideoDTO>> videoList(@RequestBody PageQuery pageQuery) {
+        IPage<VideoDTO> videoPage = videoQueryApplicationService.videoList(pageQuery);
+        return ResponseResult.buildSuccess(videoPage);
     }
 
 
     @PostMapping("/attention/feed/list")
-    @ApiOperation(value = "分页查询当前用户的关注用户视频feed流列表", notes = "分页查询当前用户的关注用户视频feed流列表", response = Boolean.class)
-    public ResponseResult<Boolean> attentionFeedList(@RequestBody PageQuery pageQuery) {
-        videoQueryApplicationService.feedList(pageQuery);
-        return ResponseResult.buildSuccess();
+    @ApiOperation(value = "分页查询当前用户的关注用户视频feed流列表", notes = "分页查询当前用户的关注用户视频feed流列表", response = VideoDTO.class)
+    public ResponseResult<IPage<VideoDTO>> attentionFeedList(@RequestBody PageQuery pageQuery) {
+        IPage<VideoDTO> videoPage = videoQueryApplicationService.attentionFeedList(pageQuery);
+        return ResponseResult.buildSuccess(videoPage);
     }
 
     @PostMapping("/recommend/feed/list")
-    @ApiOperation(value = "分页查询当前用户的推荐视频feed流列表", notes = "分页查询当前用户的推荐视频feed流列表", response = Boolean.class)
-    public ResponseResult<Boolean> recommendFeedList(@RequestBody PageQuery pageQuery) {
-        videoQueryApplicationService.feedList(pageQuery);
-        return ResponseResult.buildSuccess();
+    @ApiOperation(value = "分页查询当前用户的推荐视频feed流列表", notes = "分页查询当前用户的推荐视频feed流列表", response = VideoDTO.class)
+    public ResponseResult<IPage<VideoDTO>> recommendFeedList(@RequestBody PageQuery pageQuery) {
+        IPage<VideoDTO> videoPage = videoQueryApplicationService.recommendFeedList(pageQuery);
+        return ResponseResult.buildSuccess(videoPage);
     }
 
     @PostMapping("/like/{videoId}")
