@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ss-member</artifactId>
+        <artifactId>ss-video</artifactId>
         <groupId>com.whoiszxl</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ss-member-start</artifactId>
+    <artifactId>ss-video-application</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,26 +17,22 @@
     </properties>
 
     <dependencies>
-        <!-- alibaba nacos发现服务依赖 -->
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <groupId>com.whoiszxl</groupId>
+            <artifactId>ss-video-infrastructure</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.whoiszxl</groupId>
-            <artifactId>ss-member-interaction</artifactId>
+            <artifactId>ss-base</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.whoiszxl</groupId>
+            <artifactId>ss-video-domain</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>

@@ -15,6 +15,8 @@
         <module>ss-tools/ss-tools-dozer</module>
         <module>ss-tools/ss-tools-swagger</module>
         <module>ss-tools/ss-tools-logger</module>
+        <module>ss-gateway</module>
+        <module>ss-video</module>
     </modules>
 
     <name>${project.artifactId}</name>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ddd-seesee</artifactId>
+        <groupId>com.whoiszxl</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ss-video</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>ss-video-api</module>
+        <module>ss-video-application</module>
+        <module>ss-video-domain</module>
+        <module>ss-video-infrastructure</module>
+        <module>ss-video-rpc</module>
+        <module>ss-video-start</module>
+        <module>ss-video-interaction</module>
+    </modules>
+
+
+</project>
