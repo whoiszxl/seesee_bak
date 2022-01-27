@@ -21,4 +21,10 @@ public interface VideoApplicationService {
      * @param videoId 视频ID
      */
     void like(Long videoId);
+
+    /**
+     * 取消点赞
+     * @param videoId 视频ID
+     */
+    void disLike(Long videoId);
 }

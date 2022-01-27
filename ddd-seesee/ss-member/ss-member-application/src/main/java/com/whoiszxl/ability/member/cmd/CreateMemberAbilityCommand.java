@@ -4,7 +4,7 @@ import com.whoiszxl.model.ddd.Command;
 import lombok.Data;
 
 /**
- * TODO
+ * 创建用户能力命令
  *
  * @author whoiszxl
  * @date 2022/1/24

@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * 视频聚合根
@@ -66,8 +67,20 @@ public class Video implements AggregateRoot {
     @ApiModelProperty("业务状态")
     private Integer status;
 
+    @ApiModelProperty("创建者")
+    private String createdBy;
+
+    @ApiModelProperty("更新者")
+    private String updatedBy;
+
+    @ApiModelProperty("创建时间")
+    private LocalDateTime createdAt;
+
+    @ApiModelProperty("更新时间")
+    private LocalDateTime updatedAt;
+
 
     public void bindMemberId(Long memberId) {
-        this.id = memberId;
+        this.memberId = memberId;
     }
 }

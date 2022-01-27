@@ -68,7 +68,7 @@ public class VideoController {
     @PostMapping("/dislike/{videoId}")
     @ApiOperation(value = "取消点赞", notes = "取消点赞", response = Boolean.class)
     public ResponseResult<Boolean> dislike(@PathVariable Long videoId) {
-        videoApplicationService.like(videoId);
+        videoApplicationService.disLike(videoId);
         return ResponseResult.buildSuccess();
     }
 

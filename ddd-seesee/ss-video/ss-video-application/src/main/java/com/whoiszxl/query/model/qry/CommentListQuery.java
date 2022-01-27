@@ -17,4 +17,7 @@ public class CommentListQuery extends PageQuery {
 
     @ApiModelProperty("视频ID")
     private Long videoId;
+
+    @ApiModelProperty("父评论ID")
+    private Long commentId;
 }

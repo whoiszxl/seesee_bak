@@ -1,10 +1,13 @@
 package com.whoiszxl.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.whoiszxl.command.CommentApplicationService;
 import com.whoiszxl.command.VideoApplicationService;
+import com.whoiszxl.command.cmd.PublishCommentCommand;
 import com.whoiszxl.model.result.ResponseResult;
 import com.whoiszxl.query.CommentQueryApplicationService;
 import com.whoiszxl.query.VideoQueryApplicationService;
+import com.whoiszxl.query.model.dto.VideoCommentDTO;
 import com.whoiszxl.query.model.qry.CommentListQuery;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,12 +31,18 @@ public class CommentController {
     @Autowired
     private CommentQueryApplicationService commentQueryApplicationService;
 
+    @PostMapping("/publish")
+    @ApiOperation(value = "发表评论", notes = "发表评论", response = Boolean.class)
+    public ResponseResult<Boolean> commentPublish(@RequestBody PublishCommentCommand publishCommentCommand) {
+        commentApplicationService.commentPublish(publishCommentCommand);
+        return ResponseResult.buildSuccess();
+    }
 
     @PostMapping("/list")
-    @ApiOperation(value = "评论列表", notes = "评论列表", response = Boolean.class)
-    public ResponseResult<Boolean> commentList(@RequestBody CommentListQuery commentListQuery) {
-        commentQueryApplicationService.commentList(commentListQuery);
-        return ResponseResult.buildSuccess();
+    @ApiOperation(value = "评论列表", notes = "评论列表", response = VideoCommentDTO.class)
+    public ResponseResult<IPage<VideoCommentDTO>> commentList(@RequestBody CommentListQuery commentListQuery) {
+        IPage<VideoCommentDTO> videoCommentDTOIPage = commentQueryApplicationService.commentList(commentListQuery);
+        return ResponseResult.buildSuccess(videoCommentDTOIPage);
     }
 
 

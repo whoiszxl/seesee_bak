@@ -38,4 +38,7 @@ public class VideoComment implements AggregateRoot {
     private Integer status;
 
 
+    public void bindMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
 }

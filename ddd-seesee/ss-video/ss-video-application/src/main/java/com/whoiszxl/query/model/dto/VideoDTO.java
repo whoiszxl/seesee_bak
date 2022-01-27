@@ -49,4 +49,25 @@ public class VideoDTO implements Representation {
     @ApiModelProperty("ip地址")
     private String ip;
 
+
+    @ApiModelProperty("用户ID")
+    private Long memberId;
+
+    @ApiModelProperty("头像")
+    private String avatar;
+
+    @ApiModelProperty("昵称")
+    private String nickname;
+
+    @ApiModelProperty("点赞数")
+    private Integer lickCount;
+
+    @ApiModelProperty("评论数")
+    private Integer commentCount;
+
+    @ApiModelProperty("分享数")
+    private Integer shareCount;
+
+    @ApiModelProperty("是否点赞 1:是 0:否")
+    private Integer hasLiked;
 }

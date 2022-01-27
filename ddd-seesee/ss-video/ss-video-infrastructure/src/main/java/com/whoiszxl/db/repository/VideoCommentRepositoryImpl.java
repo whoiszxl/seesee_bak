@@ -40,7 +40,7 @@ public class VideoCommentRepositoryImpl implements VideoCommentRepository {
     @Override
     public VideoComment save(VideoComment videoComment) {
         VideoCommentPO videoCommentPO = videoCommentConverter.domainToPo(videoComment);
-        if(Objects.isNull(videoCommentPO.getMemberId())) {
+        if(Objects.isNull(videoCommentPO.getId())) {
             videoCommentMapper.insert(videoCommentPO);
         }else {
             videoCommentMapper.updateById(videoCommentPO);

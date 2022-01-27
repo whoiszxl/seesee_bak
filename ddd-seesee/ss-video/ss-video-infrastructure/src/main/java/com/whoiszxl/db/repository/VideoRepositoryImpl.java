@@ -40,7 +40,7 @@ public class VideoRepositoryImpl implements VideoRepository {
     @Override
     public Video save(Video video) {
         VideoPO videoPO = videoConverter.domainToPo(video);
-        if(Objects.isNull(videoPO.getMemberId())) {
+        if(Objects.isNull(videoPO.getId())) {
             videoMapper.insert(videoPO);
         }else {
             videoMapper.updateById(videoPO);
