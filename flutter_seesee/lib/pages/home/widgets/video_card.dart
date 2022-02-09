@@ -3,6 +3,9 @@ import 'package:flutter_seesee/entity/response/video_list_response.dart';
 import 'package:flutter_seesee/pages/home/widgets/music_icon.dart';
 import 'package:flutter_seesee/pages/home/widgets/ss_video_player.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
+import 'package:like_button/like_button.dart';
+import 'package:oktoast/oktoast.dart';
+
 
 ///首页video卡片
 class VideoCard extends StatefulWidget {
@@ -56,6 +59,16 @@ class _VideoCardState extends State<VideoCard> {
     );
   }
 
+  Future<bool> onLikeButtonTapped(bool isLiked) async{
+    /// send your request here
+    // final bool success= await sendRequest();
+
+    /// if failed, you can do nothing
+    // return success? !isLiked:isLiked;
+
+    return !isLiked;
+  }
+
   Widget rightCard(_size) {
     return Container(
       width: _size.width * 0.2,
@@ -69,7 +82,25 @@ class _VideoCardState extends State<VideoCard> {
             //头像
             _avatar(widget.videoEntity.avatar),
             //点赞数
-            Padding(padding: const EdgeInsets.only(top: 20), child: _getIcons(Icons.favorite, widget.videoEntity.lickCount.toString())),
+            Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    LikeButton(
+                        size: 40,
+                        circleColor: const CircleColor(start: ColorManager.red,end: ColorManager.red),
+                        likeBuilder: (isLike){
+                          return isLike == true ? const Icon(Icons.favorite, color: ColorManager.red, size: 30) : const Icon(Icons.favorite, color: ColorManager.white, size: 30);
+                        },
+                        bubblesColor:const BubblesColor(dotPrimaryColor: ColorManager.red,dotSecondaryColor: ColorManager.red,dotThirdColor: ColorManager.red,dotLastColor: ColorManager.red),
+                        onTap: onLikeButtonTapped
+                    ),
+                    const SizedBox(height: 2),
+                    Text(widget.videoEntity.commentCount.toString(),style: const TextStyle(color: Colors.white))
+                  ],
+                )
+            ),
             //评论数
             Padding(padding: const EdgeInsets.only(top: 7), child: _getIcons(Icons.comment, widget.videoEntity.commentCount.toString())),
             //分享数

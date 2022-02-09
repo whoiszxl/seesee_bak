@@ -31,7 +31,7 @@ class _SSVideoPlayerState extends State<SSVideoPlayer> {
     super.initState();
 
     //初始化视频控制器
-    _videoController = VideoPlayerController.asset(widget.videoUrl)..initialize().then((value) {
+    _videoController = VideoPlayerController.network(widget.videoUrl)..initialize().then((value) {
         _videoController.play();
         setState(() {
           isShowPlaying = false;

@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage>{
             ],
           ),
           Positioned(
-            top: 2,
+            top: 45,
             child: SizedBox(
               width: _size.width,
               height: 50,
@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage>{
 
                   //tab 卡片
                   Expanded(
-                    flex: 1,
                     child: Padding(
                         padding: const EdgeInsets.only(left: 40, right: 40, top: 10, bottom: 15),
                         child: Center(

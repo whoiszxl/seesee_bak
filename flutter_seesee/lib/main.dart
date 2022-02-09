@@ -27,7 +27,5 @@ void main() async {
 
 ///Service手动注入，通过 Get.find<HomeApiService>() 的方式获取注入的对象
 Future<void> initServices() async {
-  print("init services inject start...");
   await Get.putAsync(() async => HomeApiService());
-  print("init services inject end...");
 }

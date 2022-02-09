@@ -48,7 +48,7 @@ class _RecommendTabPageState extends State<RecommendTabPage> with AutomaticKeepA
         quarterTurns: 1,
         child: SmartRefresher(
           controller: _refreshController,
-          enablePullUp: true,
+          enablePullUp: false,
           onRefresh: () {},
           onLoading: () { _homePageController.getRecommendVideoList(_refreshController); },
           child: _getVideoList(context),

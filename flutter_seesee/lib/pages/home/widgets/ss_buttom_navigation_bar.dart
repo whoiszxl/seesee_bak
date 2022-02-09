@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_seesee/controller/main_page_controller.dart';
 import 'package:flutter_seesee/events/stop_play_event.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
@@ -46,14 +45,8 @@ class _SSBottomNavigationBarState extends State<SSBottomNavigationBar>{
       height: 48,
       child: Row(
         children: [
-          Expanded(
-              flex: 1,
-              child: _getAnimatedText('home'.tr, 0)
-          ),
-          Expanded(
-              flex: 1,
-              child: _getAnimatedText('friend'.tr, 1)
-          ),
+          Expanded(flex: 1, child: _getAnimatedText('home'.tr, 0)),
+          Expanded(flex: 1, child: _getAnimatedText('friend'.tr, 1)),
           Expanded(
               flex: 1,
               child:InkWell(
@@ -68,14 +61,8 @@ class _SSBottomNavigationBarState extends State<SSBottomNavigationBar>{
                 ),
               )
           ),
-          Expanded(
-              flex: 1,
-              child:_getAnimatedText('message'.tr, 2)
-          ),
-          Expanded(
-              flex: 1,
-              child:_getAnimatedText('me'.tr, 3)
-          ),
+          Expanded(flex: 1, child:_getAnimatedText('message'.tr, 2)),
+          Expanded(flex: 1, child:_getAnimatedText('me'.tr, 3)),
         ],
       ),
     );
