@@ -6,11 +6,17 @@ package com.whoiszxl.event;
  * @author whoiszxl
  * @date 2022/1/24
  */
-public interface DomainEventPublisher {
+public interface MemberDomainEventPublisher {
 
     /**
      * 发布用户登录成功的事件
      * @param memberLoginSuccessEvent
      */
     public void publishMemberLoginSuccessEvent(MemberLoginSuccessEvent memberLoginSuccessEvent);
+
+    /**
+     * 发布用户关注成功的事件
+     * @param followSuccessEvent
+     */
+    public void publishFollowSuccessEvent(FollowSuccessEvent followSuccessEvent);
 }

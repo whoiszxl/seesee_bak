@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 视频接口
  *
+ * feed流:视频信息出口，用户可以动态实时订阅到想要的视频信息。一个视频就是一个feed（饲料），feed流则是持续更新呈现。
+ *
+ * timeline：时间线是一种feed流的类型，按照时间先后顺序进行视频流推送。其次还有关注页timeline，被自己关注的人的所
+ * 有视频消息都会按时间顺序展示，还有个人页timeline，展示自己的视频消息列表。
+ *
+ * rank流：按非时间因子排序，一般按照用户喜爱度，比如点赞了某个领域的视频，那么feed流就会优先推荐某个领域的视频。
+ *
  * @author whoiszxl
  * @date 2022/1/26
  */
@@ -54,6 +61,13 @@ public class VideoController {
     @PostMapping("/recommend/feed/list")
     @ApiOperation(value = "分页查询当前用户的推荐视频feed流列表", notes = "分页查询当前用户的推荐视频feed流列表", response = VideoDTO.class)
     public ResponseResult<IPage<VideoDTO>> recommendFeedList(@RequestBody PageQuery pageQuery) {
+        IPage<VideoDTO> videoPage = videoQueryApplicationService.recommendFeedList(pageQuery);
+        return ResponseResult.buildSuccess(videoPage);
+    }
+
+    @PostMapping("/timeline/list")
+    @ApiOperation(value = "分页查询指定用户的视频列表", notes = "分页查询指定用户的视频列表", response = VideoDTO.class)
+    public ResponseResult<IPage<VideoDTO>> timeline(@RequestBody PageQuery pageQuery) {
         IPage<VideoDTO> videoPage = videoQueryApplicationService.recommendFeedList(pageQuery);
         return ResponseResult.buildSuccess(videoPage);
     }

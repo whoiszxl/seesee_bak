@@ -10,7 +10,8 @@ import com.whoiszxl.command.cmd.MemberLoginCommand;
 import com.whoiszxl.command.cmd.UpdateMemberCommand;
 import com.whoiszxl.command.converter.MemberCommandConverter;
 import com.whoiszxl.command.converter.MemberInfoCommandConverter;
-import com.whoiszxl.event.DomainEventPublisher;
+import com.whoiszxl.event.MemberDomainEventPublisher;
+import com.whoiszxl.event.MemberLoginSuccessEvent;
 import com.whoiszxl.utils.AssertUtils;
 import com.whoiszxl.utils.AuthUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +45,7 @@ public class MemberApplicationServiceImpl implements MemberApplicationService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private DomainEventPublisher domainEventPublisher;
+    private MemberDomainEventPublisher memberDomainEventPublisher;
 
     @Autowired
     private MemberCommandConverter memberCommandConverter;
@@ -98,7 +99,7 @@ public class MemberApplicationServiceImpl implements MemberApplicationService {
         //member.updateLastLoginTime();
 
         //4. 发布登录成功的领域事件，处理后续的活跃度更新，登录时间更新等操作
-        //domainEventPublisher.publishMemberLoginSuccessEvent(new MemberLoginSuccessEvent(member.getId()));
+        memberDomainEventPublisher.publishMemberLoginSuccessEvent(new MemberLoginSuccessEvent(member.getId()));
 
         //5. 返回token
         return member.getCurrentToken();

@@ -56,6 +56,21 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
         return videoPOPage.convert(videoPO -> videoCommandConverter.poToDTO(videoPO));
     }
 
+    /**
+     * 使用pull+push结合的模式
+     *
+     * 1. 先读取关注的热点用户列表，循环获取其timeline中的前10条视频
+     * 2. 同时读取自己的收件箱视频列表
+     * 3. 合并上述获取的列表，并按时间排序返回
+     *
+     * 广告实现：
+     * 1. 通过大数据实时分析用户标签，比如说：单机游戏，粤语流行乐
+     * 2. 推广客户创建出对应的账号，如：泰拉瑞亚官方账号
+     * 3. 将具有对应标签的用户隐性关注此推广账号
+     * 4. 此时广告视频也会存在与用户的feed推荐流里
+     * @param pageQuery
+     * @return
+     */
     @Override
     public IPage<VideoDTO> attentionFeedList(PageQuery pageQuery) {
         return null;

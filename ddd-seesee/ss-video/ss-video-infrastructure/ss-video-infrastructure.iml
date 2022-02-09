@@ -213,6 +213,8 @@
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.0" level="project" />
     <orderEntry type="module" module-name="ss-member-api" />
     <orderEntry type="module" module-name="ss-member-rpc" />
+    <orderEntry type="module" module-name="ss-member-infrastructure" />
+    <orderEntry type="module" module-name="ss-member-domain" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:20.0" level="project" />
     <orderEntry type="library" name="Maven: cn.hutool:hutool-all:5.1.0" level="project" />
   </component>

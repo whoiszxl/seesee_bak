@@ -134,6 +134,7 @@
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>com.whoiszxl</groupId>
             <artifactId>ss-member-rpc</artifactId>

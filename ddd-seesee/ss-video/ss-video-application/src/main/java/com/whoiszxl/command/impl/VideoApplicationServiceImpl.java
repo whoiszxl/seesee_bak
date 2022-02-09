@@ -10,6 +10,8 @@ import com.whoiszxl.command.cmd.PublishVideoCommand;
 import com.whoiszxl.command.converter.VideoCommandConverter;
 import com.whoiszxl.enums.LikeTypeEnum;
 import com.whoiszxl.enums.VideoCounterStatusEnum;
+import com.whoiszxl.event.VideoDomainEventPublisher;
+import com.whoiszxl.event.VideoPublishSuccessEvent;
 import com.whoiszxl.strategy.LikeFactory;
 import com.whoiszxl.utils.AuthUtils;
 import com.whoiszxl.utils.RedisUtils;
@@ -44,6 +46,18 @@ public class VideoApplicationServiceImpl implements VideoApplicationService {
     @Autowired
     private LikeFactory likeFactory;
 
+    @Autowired
+    private VideoDomainEventPublisher videoDomainEventPublisher;
+
+    /**
+     * 使用pull+push结合的模式
+     *
+     * 1. 将发布的视频先落库
+     * 2. 判断自己是否为热点用户，如果是则结束流程。
+     * 3. 自己是普通用户，则从关注列表中获取到自己的粉丝列表
+     * 4. 将发布的视频信息循环写入到粉丝的收件箱里
+     * @param publishVideoCommand 发布命令
+     */
     @Override
     public void publishVideo(PublishVideoCommand publishVideoCommand) {
         Long memberId = AuthUtils.getMemberId();
@@ -51,13 +65,17 @@ public class VideoApplicationServiceImpl implements VideoApplicationService {
         //落库
         Video video = videoCommandConverter.commandToDomain(publishVideoCommand);
         video.bindMemberId(memberId);
-        videoRepository.save(video);
+        Video saveResult = videoRepository.save(video);
 
-        //写入粉丝的时间线 暂用push模式实现
+        //TODO 写入粉丝的时间线 暂用push模式实现
         List<FollowerAdapterDTO> followerAdapterDTOList = memberAdapter.memberFollowerList();
         for (FollowerAdapterDTO followerAdapterDTO : followerAdapterDTOList) {
             log.info("push到follower时间线");
         }
+
+        //TODO 发送领域事件，后续处理推荐，推送等服务
+        videoDomainEventPublisher.publishMemberLoginSuccessEvent(new VideoPublishSuccessEvent(saveResult.getId()));
+
     }
 
     @Override

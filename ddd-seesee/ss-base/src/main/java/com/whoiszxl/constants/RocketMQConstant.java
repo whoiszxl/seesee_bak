@@ -12,4 +12,6 @@ public class RocketMQConstant {
 
     public static final String MEMBER_LOGIN_TOPIC = "member_login_topic";
 
+    public static final String MEMBER_FOLLOW_TOPIC = "member_follow_topic";
+
 }
