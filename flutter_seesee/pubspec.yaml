@@ -50,6 +50,9 @@ dependencies:
   flutter_login: ^2.2.1
   qr_flutter: ^4.0.0
   barcode_scan2: ^4.2.0
+  video_player: ^2.1.1
+  marquee: ^2.1.0
+
 
 dev_dependencies:
   flutter_test:

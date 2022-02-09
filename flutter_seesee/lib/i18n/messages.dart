@@ -9,6 +9,8 @@ class Messages extends Translations {
     'zh_CN': {
       'home': "首页",
       'sub': "订阅",
+      'friend': "朋友",
+      'message': "消息",
       'category': "分类",
       'discovery': "发现",
       'cart': "购物车",
@@ -32,6 +34,8 @@ class Messages extends Translations {
     'zh_HK': {
       'home': "首頁",
       'sub': "訂閱",
+      'friend': "朋友",
+      'message': "消息",
       'category': "分類",
       'discovery': "發現",
       'cart': "購物車",
@@ -55,6 +59,8 @@ class Messages extends Translations {
     'en_US': {
       'home': "home",
       'sub': "sub",
+      'friend': "friend",
+      'message': "message",
       'category': "category",
       'discovery': "discovery",
       'cart': "cart",
