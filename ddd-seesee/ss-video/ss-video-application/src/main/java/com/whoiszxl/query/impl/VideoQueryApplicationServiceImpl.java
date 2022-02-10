@@ -8,9 +8,11 @@ import com.whoiszxl.adapter.model.MemberAdapterDTO;
 import com.whoiszxl.command.converter.VideoCommandConverter;
 import com.whoiszxl.db.mapper.VideoMapper;
 import com.whoiszxl.db.model.VideoPO;
+import com.whoiszxl.enums.LikeTypeEnum;
 import com.whoiszxl.model.query.PageQuery;
 import com.whoiszxl.query.VideoQueryApplicationService;
 import com.whoiszxl.query.model.dto.VideoDTO;
+import com.whoiszxl.strategy.LikeFactory;
 import com.whoiszxl.utils.AuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,9 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
 
     @Autowired
     private MemberAdapter memberAdapter;
+
+    @Autowired
+    private LikeFactory likeFactory;
 
     @Override
     public void feedList(PageQuery pageQuery) {
@@ -94,7 +99,7 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
             videoDTO.setNickname(memberInfoAdapterDTO.getNickname());
 
             //TODO 设置计数器
-            videoDTO.setLickCount(100);
+            videoDTO.setLickCount(likeFactory.getLikeStrategy(LikeTypeEnum.VIDEO.getCode()).getLikeCount(videoPO.getId()));
             videoDTO.setCommentCount(200);
             videoDTO.setShareCount(567);
 

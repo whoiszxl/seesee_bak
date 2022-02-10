@@ -25,6 +25,11 @@ public class VideoLike extends LikeStrategy {
     }
 
     @Override
+    public Integer getLikeCount(Long id) {
+        return getLikeCountByType(LikeTypeEnum.VIDEO, id);
+    }
+
+    @Override
     public String getLikeTypeName() {
         return LikeTypeEnum.VIDEO.getTypeName();
     }

@@ -5,6 +5,7 @@ import com.whoiszxl.constants.BaseRedisKeyPrefixConstants;
 import com.whoiszxl.enums.LikeTypeEnum;
 import com.whoiszxl.enums.VideoCounterStatusEnum;
 import com.whoiszxl.utils.RedisUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,6 +49,11 @@ public abstract class LikeStrategy {
         }
     }
 
+    protected Integer getLikeCountByType(LikeTypeEnum likeTypeEnum, Long id) {
+        String redisKey = BaseRedisKeyPrefixConstants.VIDEO_PREFIX + likeTypeEnum.getTypeName() + ":" + id;
+        String count = redisUtils.get(redisKey);
+        return StringUtils.isBlank(count) ? 0 : Integer.parseInt(count);
+    }
 
     /**
      * 判断用户是否对此记录进行过点赞
@@ -60,6 +66,14 @@ public abstract class LikeStrategy {
         String redisKey = BaseRedisKeyPrefixConstants.VIDEO_PREFIX + likeTypeEnum.getTypeName() + ":" + id + ":set";
         return redisUtils.sIsMember(redisKey, memberId + "");
     }
+
+    /**
+     * 通过like类型和记录ID获取到记录的点赞数
+     * @param likeTypeEnum like枚举类型
+     * @param id 记录ID
+     * @return
+     */
+    public abstract Integer getLikeCount(Long id);
 
     public abstract void like(LikeCommand likeCommand);
 

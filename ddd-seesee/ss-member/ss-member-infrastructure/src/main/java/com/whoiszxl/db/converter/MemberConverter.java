@@ -20,21 +20,7 @@ public class MemberConverter {
 
 
     public Member poToDomain(MemberPO memberPO) {
-        Member member = Member.builder()
-                .id(memberPO.getId())
-                .username(memberPO.getUsername())
-                .password(memberPO.getPassword())
-                .avatar(memberPO.getAvatar())
-                .nickname(memberPO.getNickname())
-                .googleKey(memberPO.getGoogleKey())
-                .googleStatus(memberPO.getGoogleStatus())
-                .realName(memberPO.getRealName())
-                .email(memberPO.getEmail())
-                .phone(memberPO.getPhone())
-                .online(memberPO.getOnline())
-                .status(memberPO.getStatus())
-                .build();
-
+        Member member = dozerUtils.map(memberPO, Member.class);
         return member;
     }
 

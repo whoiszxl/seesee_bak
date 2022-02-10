@@ -99,7 +99,7 @@ public class MemberApplicationServiceImpl implements MemberApplicationService {
         //member.updateLastLoginTime();
 
         //4. 发布登录成功的领域事件，处理后续的活跃度更新，登录时间更新等操作
-        memberDomainEventPublisher.publishMemberLoginSuccessEvent(new MemberLoginSuccessEvent(member.getId()));
+        //memberDomainEventPublisher.publishMemberLoginSuccessEvent(new MemberLoginSuccessEvent(member.getId()));
 
         //5. 返回token
         return member.getCurrentToken();

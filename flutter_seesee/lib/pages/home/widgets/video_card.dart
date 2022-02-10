@@ -74,47 +74,45 @@ class _VideoCardState extends State<VideoCard> {
       width: _size.width * 0.2,
       height: _size.height * 0.5,
       padding: const EdgeInsets.only(left:10,bottom: 10),
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            //头像
-            _avatar(widget.videoEntity.avatar),
-            //点赞数
-            Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    LikeButton(
-                        size: 40,
-                        circleColor: const CircleColor(start: ColorManager.red,end: ColorManager.red),
-                        likeBuilder: (isLike){
-                          return isLike == true ? const Icon(Icons.favorite, color: ColorManager.red, size: 30) : const Icon(Icons.favorite, color: ColorManager.white, size: 30);
-                        },
-                        bubblesColor:const BubblesColor(dotPrimaryColor: ColorManager.red,dotSecondaryColor: ColorManager.red,dotThirdColor: ColorManager.red,dotLastColor: ColorManager.red),
-                        onTap: onLikeButtonTapped
-                    ),
-                    const SizedBox(height: 2),
-                    Text(widget.videoEntity.commentCount.toString(),style: const TextStyle(color: Colors.white))
-                  ],
-                )
-            ),
-            //评论数
-            Padding(padding: const EdgeInsets.only(top: 7), child: _getIcons(Icons.comment, widget.videoEntity.commentCount.toString())),
-            //分享数
-            Padding(padding: const EdgeInsets.only(top: 7), child: _getIcons(Icons.reply, widget.videoEntity.shareCount.toString())),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          //头像
+          _avatar(widget.videoEntity.avatar),
+          //点赞数
+          Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  LikeButton(
+                      size: 40,
+                      circleColor: const CircleColor(start: ColorManager.red,end: ColorManager.red),
+                      likeBuilder: (isLike){
+                        return isLike == true ? const Icon(Icons.favorite, color: ColorManager.red, size: 30) : const Icon(Icons.favorite, color: ColorManager.white, size: 30);
+                      },
+                      bubblesColor:const BubblesColor(dotPrimaryColor: ColorManager.red,dotSecondaryColor: ColorManager.red,dotThirdColor: ColorManager.red,dotLastColor: ColorManager.red),
+                      onTap: onLikeButtonTapped
+                  ),
+                  const SizedBox(height: 2),
+                  Text(widget.videoEntity.commentCount.toString(),style: const TextStyle(color: Colors.white))
+                ],
+              )
+          ),
+          //评论数
+          Padding(padding: const EdgeInsets.only(top: 7), child: _getIcons(Icons.comment, widget.videoEntity.commentCount.toString())),
+          //分享数
+          Padding(padding: const EdgeInsets.only(top: 7), child: _getIcons(Icons.reply, widget.videoEntity.shareCount.toString())),
 
-            //CD
-            Padding(padding: const EdgeInsets.only(top: 10), child: SizedBox(
-              height: 40,
-              width: 40,
-              child: MusicIcon(widget.videoEntity.avatar),
-            ))
-          ],
-        ),
-      ),
+          //CD
+          Padding(padding: const EdgeInsets.only(top: 10), child: SizedBox(
+            height: 40,
+            width: 40,
+            child: MusicIcon(widget.videoEntity.avatar),
+          ))
+        ],
+      )
     );
   }
 
@@ -150,10 +148,8 @@ class _VideoCardState extends State<VideoCard> {
           Row(
             children: [
               const Icon(Icons.music_note, size: 15, color: Colors.white),
-              Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Expanded(flex: 1, child: Text(widget.videoEntity.nickname + "音乐名", maxLines: 1, style: const TextStyle(color: Colors.white))),
-              )
+              const SizedBox(width: 3),
+              Expanded(flex: 1, child: Text(widget.videoEntity.nickname + "音乐名", maxLines: 1, style: const TextStyle(color: Colors.white))),
             ],
           ),
         ],

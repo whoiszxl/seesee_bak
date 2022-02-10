@@ -53,7 +53,7 @@ public class MemberResponse implements Representation {
     private Integer online;
 
     @ApiModelProperty("性别(0:未知 1:男；2:女)")
-    private Boolean gender;
+    private Integer gender;
 
     @ApiModelProperty("生日")
     private LocalDateTime birthday;

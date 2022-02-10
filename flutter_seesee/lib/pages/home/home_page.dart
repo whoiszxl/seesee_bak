@@ -4,6 +4,7 @@ import 'package:flutter_seesee/pages/home/city_tab_page.dart';
 import 'package:flutter_seesee/pages/home/follow_tab_page.dart';
 import 'package:flutter_seesee/pages/home/recommend_tab_page.dart';
 import 'package:flutter_seesee/router/application.dart';
+import 'package:flutter_seesee/router/router_manager.dart';
 import 'package:get/get.dart';
 
 ///home页面
@@ -43,7 +44,15 @@ class _HomePageState extends State<HomePage>{
               child: Row(
                 children: [
                   //live icon
-                  Padding(padding: const EdgeInsets.only(left: 20), child: Icon(Icons.live_tv, size: 25, color: Colors.white.withOpacity(0.5)),),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: InkWell(
+                      child: Icon(Icons.live_tv, size: 25, color: Colors.white.withOpacity(0.5)),
+                      onTap: () {
+
+                      },
+                    )
+                  ),
 
                   //tab 卡片
                   Expanded(

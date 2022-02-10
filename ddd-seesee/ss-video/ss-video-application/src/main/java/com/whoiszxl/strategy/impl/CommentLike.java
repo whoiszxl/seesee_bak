@@ -23,6 +23,11 @@ public class CommentLike extends LikeStrategy {
     }
 
     @Override
+    public Integer getLikeCount(Long id) {
+        return getLikeCountByType(LikeTypeEnum.COMMENT, id);
+    }
+
+    @Override
     public String getLikeTypeName() {
         return LikeTypeEnum.COMMENT.getTypeName();
     }

@@ -13,5 +13,9 @@ class ColorManager{
   static const Color grey = Colors.grey;
   static const Color black = Colors.black;
   static const Color bg = Colors.white60;
+  static const Color loginMainColor = main;
+  static const Color loginSecondColor = Color(0xFFF1E6FF);
+
+  static const Color line = Colors.black12;
 
 }

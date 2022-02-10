@@ -3,6 +3,7 @@ import 'package:flutter_seesee/controller/all_controller_binding.dart';
 import 'package:flutter_seesee/i18n/messages.dart';
 import 'package:flutter_seesee/router/router_manager.dart';
 import 'package:flutter_seesee/service/home_api_service.dart';
+import 'package:flutter_seesee/service/member_api_service.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -28,4 +29,5 @@ void main() async {
 ///Service手动注入，通过 Get.find<HomeApiService>() 的方式获取注入的对象
 Future<void> initServices() async {
   await Get.putAsync(() async => HomeApiService());
+  await Get.putAsync(() async => MemberApiService());
 }
