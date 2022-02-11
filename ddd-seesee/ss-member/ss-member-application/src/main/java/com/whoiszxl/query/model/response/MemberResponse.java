@@ -87,4 +87,13 @@ public class MemberResponse implements Representation {
 
     @ApiModelProperty("最后登录")
     private LocalDateTime lastLogin;
+
+    @ApiModelProperty("粉丝数")
+    private Integer followerCount;
+
+    @ApiModelProperty("关注数")
+    private Integer attentionCount;
+
+    @ApiModelProperty("获赞数")
+    private Integer likesCount;
 }

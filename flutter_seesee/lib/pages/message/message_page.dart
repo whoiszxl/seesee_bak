@@ -43,11 +43,11 @@ class _MessagePageState extends State<MessagePage>{
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/1.png", "粉丝", "xiaozhou关注了你"),
-                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/2.png", "互动消息", "xyz 在评论中提到了你"),
-                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/3.png", "seesee小助手", "seesee元宇宙开启"),
-                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/4.png", "钱包通知", "SS币购买成功"),
-                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/5.png", "系统通知", "账号异地登录提醒"),
+                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/4.png", "粉丝", "xiaozhou关注了你"),
+                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/3.png", "互动消息", "xyz 在评论中提到了你"),
+                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/2.png", "seesee小助手", "seesee元宇宙开启"),
+                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/5.png", "钱包通知", "SS币购买成功"),
+                    memberInfoTile("http://zero-mall.oss-cn-shenzhen.aliyuncs.com/banner/1.png", "系统通知", "账号异地登录提醒"),
                   ],
                 ),
               ),

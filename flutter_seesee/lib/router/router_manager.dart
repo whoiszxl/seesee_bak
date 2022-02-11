@@ -5,6 +5,7 @@ import 'package:flutter_seesee/pages/login/login_page.dart';
 import 'package:flutter_seesee/pages/login/register_page.dart';
 import 'package:flutter_seesee/pages/main_page.dart';
 import 'package:flutter_seesee/pages/member/member_page.dart';
+import 'package:flutter_seesee/pages/member/qrcode_page.dart';
 import 'package:flutter_seesee/pages/message/message_page.dart';
 import 'package:flutter_seesee/pages/search/search_page.dart';
 import 'package:flutter_seesee/pages/settings/settings_page.dart';
@@ -25,6 +26,8 @@ class Routers{
   static const String login = '/login';
   static const String register = '/register';
 
+  static const String qrcode = '/qrcode';
+
 }
 
 ///路由管理者
@@ -40,6 +43,7 @@ class RouterManager{
     GetPage(name: Routers.login, page: () => LoginPage()),
     GetPage(name: Routers.register, page: () => RegisterPage()),
     GetPage(name: Routers.settings, page: () => SettingsPage()),
+    GetPage(name: Routers.qrcode, page: () => QrcodePage()),
   ];
 
 

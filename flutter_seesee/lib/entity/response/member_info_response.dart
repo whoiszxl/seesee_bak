@@ -22,6 +22,9 @@ class MemberInfoResponse {
   num loginCount;
   num loginErrorCount;
   String lastLogin;
+  num followerCount;
+  num attentionCount;
+  num likesCount;
 
   MemberInfoResponse(
       {this.memberId,
@@ -46,7 +49,11 @@ class MemberInfoResponse {
         this.gradeLevel,
         this.loginCount,
         this.loginErrorCount,
-        this.lastLogin});
+        this.lastLogin,
+        this.followerCount,
+        this.attentionCount,
+        this.likesCount
+      });
 
   MemberInfoResponse.fromJson(Map<String, dynamic> json) {
     memberId = json['memberId'];
@@ -72,6 +79,9 @@ class MemberInfoResponse {
     loginCount = json['loginCount'];
     loginErrorCount = json['loginErrorCount'];
     lastLogin = json['lastLogin'];
+    followerCount = json['followerCount'];
+    attentionCount = json['attentionCount'];
+    likesCount = json['likesCount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -99,6 +109,9 @@ class MemberInfoResponse {
     data['loginCount'] = loginCount;
     data['loginErrorCount'] = loginErrorCount;
     data['lastLogin'] = lastLogin;
+    data['followerCount'] = followerCount;
+    data['attentionCount'] = attentionCount;
+    data['likesCount'] = likesCount;
     return data;
   }
 }

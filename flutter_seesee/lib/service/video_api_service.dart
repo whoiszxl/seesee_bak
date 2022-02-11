@@ -18,6 +18,16 @@ class VideoApiService extends GetxService {
     return VideoListResponse.fromJson(result);
   }
 
+  ///获取我的视频列表
+  Future<VideoListResponse> getMyVideoList(int page, int size) async {
+    Map<String, dynamic> params = HashMap();
+    params["page"] = page;
+    params["size"] = size;
+    var result = await HttpManager.getInstance().post(url: ApiUrls.myVideoList, data: params);
+    return VideoListResponse.fromJson(result);
+  }
+
+
   ///视频点赞
   videoLike(String videoId) async {
     await HttpManager.getInstance().post(url: ApiUrls.videoLike + "/" + videoId);

@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_seesee/controller/member_page_controller.dart';
+import 'package:flutter_seesee/controller/video_controller.dart';
+import 'package:flutter_seesee/entity/response/video_list_response.dart';
 import 'package:flutter_seesee/pages/member/widgets/member_right_menu_widget.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
 import 'package:flutter_seesee/router/router_manager.dart';
@@ -41,6 +43,7 @@ class _MemberPageState extends State<MemberPage> {
 
     //获取用户信息
     _memberController.getMemberInfo();
+    _memberController.getMyVideoList();
   }
 
   @override
@@ -91,7 +94,7 @@ class _MemberPageState extends State<MemberPage> {
                     crossAxisCount: 3,
                     itemCount: 6,
                     itemBuilder: (BuildContext context, int index) {
-                      return _videoCard("https://media.giphy.com/media/Ii4Cv63yG9iYawDtKC/giphy.gif");
+                      return _videoCard(_memberController.myVideoList[index]);
                     },
 
                     staggeredTileBuilder: (int index) {
@@ -115,14 +118,14 @@ class _MemberPageState extends State<MemberPage> {
     );
   }
 
-  _videoCard(String coverUrl) {
+  _videoCard(VideoEntity videoEntity) {
     return Container(
-      height: 140,
+      height: 160,
       decoration: BoxDecoration(color: Colors.black26, border: Border.all(color: Colors.white70, width: .5)),
       child: FittedBox(
         child: CachedNetworkImage(
           fit: BoxFit.fill,
-          imageUrl: coverUrl,
+          imageUrl: videoEntity.cover,
           placeholder: (context, url) => const Padding(
             padding: EdgeInsets.all(35.0),
             child: CircularProgressIndicator(),
@@ -149,11 +152,17 @@ class _MemberPageState extends State<MemberPage> {
         ),
         const SizedBox(width: 5),
 
-        Container(
-          width: 45,
-          height: 47,
-          decoration: BoxDecoration(border: Border.all(color: Colors.black12)),
-          child: const Center(child: Icon(Icons.bookmark)),
+        InkWell(
+          child: Container(
+            width: 45,
+            height: 47,
+            decoration: BoxDecoration(border: Border.all(color: Colors.black12)),
+            child: const Center(child: Icon(Icons.qr_code_2_outlined)),
+          ),
+
+          onTap: () {
+            Get.toNamed(Routers.qrcode);
+          },
         )
       ],
     );
@@ -219,35 +228,30 @@ class _MemberPageState extends State<MemberPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Column(
-          children: const [
-            Text("36", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            SizedBox(height: 5),
-            Text("关注", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
+          children: [
+            Text(_memberController.memberInfo.value.attentionCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 5),
+            const Text("关注", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
           ],
         ),
 
-        Container(color: Colors.black54, width: 1, height: 15, margin: const EdgeInsets.symmetric(horizontal: 15)),
+        Container(color: Colors.black54, width: 1, height: 20, margin: const EdgeInsets.symmetric(horizontal: 20)),
 
         Column(
-          children: const [
-            Text("13", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            SizedBox(height: 5),
-            Text("粉丝", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
+          children: [
+            Text(_memberController.memberInfo.value.followerCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 5),
+            const Text("粉丝", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
           ],
         ),
 
-        Container(
-          color: Colors.black54,
-          width: 1,
-          height: 15,
-          margin: const EdgeInsets.symmetric(horizontal: 15),
-        ),
+        Container(color: Colors.black54, width: 1, height: 20, margin: const EdgeInsets.symmetric(horizontal: 20)),
 
         Column(
-          children: const [
-            Text("143", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            SizedBox(height: 5),
-            Text("点赞", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
+          children: [
+            Text(_memberController.memberInfo.value.likesCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 5),
+            const Text("获赞", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
           ],
         ),
       ],

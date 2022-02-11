@@ -22,6 +22,15 @@ public class MemberInfo implements AggregateRoot {
     @ApiModelProperty("性别(0:未知 1:男；2:女)")
     private Boolean gender;
 
+    @ApiModelProperty("粉丝数")
+    private Integer followerCount;
+
+    @ApiModelProperty("关注数")
+    private Integer attentionCount;
+
+    @ApiModelProperty("获赞数")
+    private Integer likesCount;
+
     @ApiModelProperty("生日")
     private LocalDateTime birthday;
 

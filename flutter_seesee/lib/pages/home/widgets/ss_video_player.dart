@@ -23,7 +23,7 @@ class _SSVideoPlayerState extends State<SSVideoPlayer> {
   @override
   void dispose() {
     super.dispose();
-    _videoController.dispose();
+    //_videoController.dispose();
   }
 
   @override
