@@ -3,6 +3,7 @@ import 'package:flutter_seesee/res/colors_manager.dart';
 
 ///home页面
 class FollowTabPage extends StatefulWidget {
+
   const FollowTabPage({Key key}) : super(key: key);
 
   @override

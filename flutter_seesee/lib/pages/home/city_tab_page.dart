@@ -3,6 +3,7 @@ import 'package:flutter_seesee/res/colors_manager.dart';
 
 ///home页面
 class CityTabPage extends StatefulWidget {
+
   const CityTabPage({Key key}) : super(key: key);
 
   @override

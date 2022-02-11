@@ -4,7 +4,6 @@ import 'package:flutter_seesee/pages/home/city_tab_page.dart';
 import 'package:flutter_seesee/pages/home/follow_tab_page.dart';
 import 'package:flutter_seesee/pages/home/recommend_tab_page.dart';
 import 'package:flutter_seesee/router/application.dart';
-import 'package:flutter_seesee/router/router_manager.dart';
 import 'package:get/get.dart';
 
 ///home页面
@@ -17,7 +16,7 @@ class HomePage extends StatefulWidget {
   }
 }
 
-class _HomePageState extends State<HomePage>{
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<HomePage>{
 
   @override
   Widget build(BuildContext context) {
@@ -85,4 +84,7 @@ class _HomePageState extends State<HomePage>{
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

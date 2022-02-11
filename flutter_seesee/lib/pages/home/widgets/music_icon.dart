@@ -3,6 +3,7 @@ import 'package:flutter_seesee/res/colors_manager.dart';
 
 ///music CD组件
 class MusicIcon extends StatefulWidget {
+
   final String musicImgUrl;
 
   const MusicIcon(this.musicImgUrl, {Key key}) : super(key: key);

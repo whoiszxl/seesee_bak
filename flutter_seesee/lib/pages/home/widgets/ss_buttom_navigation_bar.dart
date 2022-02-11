@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 ///首页底部导航
 class SSBottomNavigationBar extends StatefulWidget {
 
+  const SSBottomNavigationBar({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _SSBottomNavigationBarState();

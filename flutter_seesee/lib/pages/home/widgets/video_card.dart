@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_seesee/controller/video_controller.dart';
 import 'package:flutter_seesee/entity/response/video_list_response.dart';
 import 'package:flutter_seesee/pages/home/widgets/music_icon.dart';
 import 'package:flutter_seesee/pages/home/widgets/ss_video_player.dart';
+import 'package:flutter_seesee/pages/home/widgets/video_comment.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
+import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
-import 'package:oktoast/oktoast.dart';
-
 
 ///首页video卡片
 class VideoCard extends StatefulWidget {
@@ -19,6 +20,9 @@ class VideoCard extends StatefulWidget {
 }
 
 class _VideoCardState extends State<VideoCard> {
+
+  final VideoController _videoController = Get.put(VideoController());
+
 
   @override
   void initState() {
@@ -60,12 +64,11 @@ class _VideoCardState extends State<VideoCard> {
   }
 
   Future<bool> onLikeButtonTapped(bool isLiked) async{
-    /// send your request here
-    // final bool success= await sendRequest();
-
-    /// if failed, you can do nothing
-    // return success? !isLiked:isLiked;
-
+    if(isLiked) {
+      _videoController.videoDislike(widget.videoEntity.id);
+    }else {
+      _videoController.videoLike(widget.videoEntity.id);
+    }
     return !isLiked;
   }
 
@@ -87,6 +90,7 @@ class _VideoCardState extends State<VideoCard> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   LikeButton(
+                      isLiked: widget.videoEntity.hasLiked == 1 ? true : false,
                       size: 40,
                       circleColor: const CircleColor(start: ColorManager.red,end: ColorManager.red),
                       likeBuilder: (isLike){
@@ -96,14 +100,38 @@ class _VideoCardState extends State<VideoCard> {
                       onTap: onLikeButtonTapped
                   ),
                   const SizedBox(height: 2),
-                  Text(widget.videoEntity.commentCount.toString(),style: const TextStyle(color: Colors.white))
+                  Text(widget.videoEntity.lickCount.toString(),style: const TextStyle(color: Colors.white))
                 ],
               )
           ),
           //评论数
-          Padding(padding: const EdgeInsets.only(top: 7), child: _getIcons(Icons.comment, widget.videoEntity.commentCount.toString())),
+          Padding(padding: const EdgeInsets.only(top: 7),
+              child: _getIcons(Icons.comment, widget.videoEntity.commentCount.toString(), onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+                  builder: (context) {
+                    return VideoComment(videoId: widget.videoEntity.id);
+                  }
+                );
+              })),
           //分享数
-          Padding(padding: const EdgeInsets.only(top: 7), child: _getIcons(Icons.reply, widget.videoEntity.shareCount.toString())),
+          Padding(padding: const EdgeInsets.only(top: 7),
+              child: _getIcons(Icons.reply, widget.videoEntity.shareCount.toString(), onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  )),
+                  backgroundColor: ColorManager.black,
+                  builder: (context) {
+                    return const Text("hello");
+                  }
+                );
+          })),
 
           //CD
           Padding(padding: const EdgeInsets.only(top: 10), child: SizedBox(
@@ -117,12 +145,15 @@ class _VideoCardState extends State<VideoCard> {
   }
 
   ///右侧icon item
-  Widget _getIcons(IconData icon, String num) {
-    return Column(
-      children: [
-        Icon(icon, color: ColorManager.white, size: 30.0),
-        Padding(padding: const EdgeInsets.only(top: 2), child: Text(num, style: const TextStyle(color: Colors.white, fontSize: 12)))
-      ],
+  Widget _getIcons(IconData icon, String num, {Function onTap}) {
+    return InkWell(
+      child: Column(
+        children: [
+          Icon(icon, color: ColorManager.white, size: 30.0),
+          Padding(padding: const EdgeInsets.only(top: 2), child: Text(num, style: const TextStyle(color: Colors.white, fontSize: 12)))
+        ],
+      ),
+      onTap: onTap,
     );
   }
 
@@ -188,4 +219,5 @@ class _VideoCardState extends State<VideoCard> {
       ),
     );
   }
+
 }
