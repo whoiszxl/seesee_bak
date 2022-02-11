@@ -3,13 +3,15 @@ package com.whoiszxl.strategy.impl;
 import com.whoiszxl.command.cmd.LikeCommand;
 import com.whoiszxl.enums.LikeTypeEnum;
 import com.whoiszxl.strategy.LikeStrategy;
+import org.springframework.stereotype.Component;
 
 /**
- * TODO
+ * 评论点赞策略实现
  *
  * @author whoiszxl
  * @date 2021/12/8
  */
+@Component
 public class CommentLike extends LikeStrategy {
 
     @Override
@@ -18,7 +20,7 @@ public class CommentLike extends LikeStrategy {
     }
 
     @Override
-    public boolean isLike(Long id, Long memberId) {
+    public Integer isLike(Long id, Long memberId) {
         return isLike(id, memberId, LikeTypeEnum.COMMENT);
     }
 

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * TODO
+ * 用户DTO
  *
  * @author whoiszxl
  * @date 2022/1/27
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 public class MemberDTO implements Serializable {
 
-    private Long id;
+    private String id;
 
     private String nickname;
 

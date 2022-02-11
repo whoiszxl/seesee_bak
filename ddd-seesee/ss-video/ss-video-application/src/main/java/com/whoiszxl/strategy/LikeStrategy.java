@@ -51,7 +51,8 @@ public abstract class LikeStrategy {
 
     protected Integer getLikeCountByType(LikeTypeEnum likeTypeEnum, Long id) {
         String redisKey = BaseRedisKeyPrefixConstants.VIDEO_PREFIX + likeTypeEnum.getTypeName() + ":" + id;
-        String count = redisUtils.get(redisKey);
+        String countKey = redisKey + ":count";
+        String count = redisUtils.get(countKey);
         return StringUtils.isBlank(count) ? 0 : Integer.parseInt(count);
     }
 
@@ -62,9 +63,9 @@ public abstract class LikeStrategy {
      * @param likeTypeEnum 点赞记录的类型
      * @return 是否点过赞
      */
-    protected boolean isLike(Long id, Long memberId, LikeTypeEnum likeTypeEnum) {
+    protected Integer isLike(Long id, Long memberId, LikeTypeEnum likeTypeEnum) {
         String redisKey = BaseRedisKeyPrefixConstants.VIDEO_PREFIX + likeTypeEnum.getTypeName() + ":" + id + ":set";
-        return redisUtils.sIsMember(redisKey, memberId + "");
+        return redisUtils.sIsMember(redisKey, memberId + "") ? 1 : 0;
     }
 
     /**
@@ -77,7 +78,7 @@ public abstract class LikeStrategy {
 
     public abstract void like(LikeCommand likeCommand);
 
-    public abstract boolean isLike(Long id, Long memberId);
+    public abstract Integer isLike(Long id, Long memberId);
 
     public abstract String getLikeTypeName();
 

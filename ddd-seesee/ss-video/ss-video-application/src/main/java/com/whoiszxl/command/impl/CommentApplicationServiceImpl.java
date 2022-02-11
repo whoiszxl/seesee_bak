@@ -32,11 +32,11 @@ public class CommentApplicationServiceImpl implements CommentApplicationService 
     private LikeFactory likeFactory;
 
     @Override
-    public void commentLike(Long commentId) {
+    public void commentLike(String commentId) {
         Long memberId = AuthUtils.getMemberId();
 
         LikeCommand likeCommand = new LikeCommand();
-        likeCommand.setId(commentId);
+        likeCommand.setId(Long.parseLong(commentId));
         likeCommand.setMemberId(memberId);
         likeCommand.setLikeType(LikeTypeEnum.COMMENT.getCode());
         likeCommand.setStatus(VideoCounterStatusEnum.INCR.getCode());
@@ -45,11 +45,11 @@ public class CommentApplicationServiceImpl implements CommentApplicationService 
     }
 
     @Override
-    public void commentLikeDislike(Long commentId) {
+    public void commentLikeDislike(String commentId) {
         Long memberId = AuthUtils.getMemberId();
 
         LikeCommand likeCommand = new LikeCommand();
-        likeCommand.setId(commentId);
+        likeCommand.setId(Long.parseLong(commentId));
         likeCommand.setMemberId(memberId);
         likeCommand.setLikeType(LikeTypeEnum.COMMENT.getCode());
         likeCommand.setStatus(VideoCounterStatusEnum.DECR.getCode());

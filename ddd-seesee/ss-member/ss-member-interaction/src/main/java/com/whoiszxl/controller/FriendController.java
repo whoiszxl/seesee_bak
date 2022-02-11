@@ -3,6 +3,7 @@ package com.whoiszxl.controller;
 import com.whoiszxl.command.FollowerApplicationService;
 import com.whoiszxl.command.cmd.FollowMemberCommand;
 import com.whoiszxl.command.cmd.UpdateMemberCommand;
+import com.whoiszxl.dto.MemberDTO;
 import com.whoiszxl.model.result.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,5 +30,4 @@ public class FriendController {
         followerApplicationService.follow(followMemberCommand);
         return ResponseResult.buildSuccess();
     }
-
 }

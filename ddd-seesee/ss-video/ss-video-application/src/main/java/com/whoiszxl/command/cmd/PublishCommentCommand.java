@@ -14,10 +14,10 @@ import javax.validation.constraints.NotNull;
  * @date 2022/1/27
  */
 @Data
-@ApiModel("发布视频评论命令")
+@ApiModel("发布评论命令")
 public class PublishCommentCommand {
 
-    @NotNull(message = "视频封面不能为空")
+    @NotNull(message = "视频ID不能为空")
     @ApiModelProperty("视频ID")
     private Long videoId;
 

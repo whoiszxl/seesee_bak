@@ -83,6 +83,14 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
 
     @Override
     public IPage<VideoDTO> recommendFeedList(PageQuery pageQuery) {
+        Long memberId = null;
+        try{
+            memberId = AuthUtils.getMemberId();
+        }catch (Exception e) {
+
+        }
+        Long finalMemberId = memberId;
+
         //TODO 推荐实现
         LambdaQueryWrapper<VideoPO> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.orderByDesc(VideoPO::getCreatedAt);
@@ -102,6 +110,10 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
             videoDTO.setLickCount(likeFactory.getLikeStrategy(LikeTypeEnum.VIDEO.getCode()).getLikeCount(videoPO.getId()));
             videoDTO.setCommentCount(200);
             videoDTO.setShareCount(567);
+
+            //设置是否点赞过
+            Integer hasLiked = likeFactory.getLikeStrategy(LikeTypeEnum.VIDEO.getCode()).isLike(videoPO.getId(), finalMemberId);
+            videoDTO.setHasLiked(hasLiked);
 
             return videoDTO;
         });

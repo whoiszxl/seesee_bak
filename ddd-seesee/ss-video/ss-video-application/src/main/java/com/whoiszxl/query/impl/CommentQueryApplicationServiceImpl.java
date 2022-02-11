@@ -8,9 +8,12 @@ import com.whoiszxl.adapter.model.MemberAdapterDTO;
 import com.whoiszxl.db.mapper.VideoCommentMapper;
 import com.whoiszxl.db.model.VideoCommentPO;
 import com.whoiszxl.dozer.DozerUtils;
+import com.whoiszxl.enums.LikeTypeEnum;
 import com.whoiszxl.query.CommentQueryApplicationService;
 import com.whoiszxl.query.model.dto.VideoCommentDTO;
 import com.whoiszxl.query.model.qry.CommentListQuery;
+import com.whoiszxl.strategy.LikeFactory;
+import com.whoiszxl.utils.AuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +38,9 @@ public class CommentQueryApplicationServiceImpl implements CommentQueryApplicati
     @Autowired
     private MemberAdapter memberAdapter;
 
+    @Autowired
+    private LikeFactory likeFactory;
+
     @Override
     public IPage<VideoCommentDTO> commentList(CommentListQuery commentListQuery) {
         LambdaQueryWrapper<VideoCommentPO> lambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -50,12 +56,31 @@ public class CommentQueryApplicationServiceImpl implements CommentQueryApplicati
         List<Long> memberIdList = videoCommentPOPage.getRecords().stream().map(VideoCommentPO::getMemberId).distinct().collect(Collectors.toList());
         List<MemberAdapterDTO> memberInfoList = memberAdapter.findMemberInfoByIds(memberIdList);
 
+        Long memberId = null;
+        try{
+            memberId = AuthUtils.getMemberId();
+        }catch (Exception e) {
+
+        }
+        Long finalMemberId = memberId;
+
         IPage<VideoCommentDTO> videoCommentDTOIPage = videoCommentPOPage.convert(e -> {
             VideoCommentDTO videoCommentDTO = dozerUtils.map(e, VideoCommentDTO.class);
             MemberAdapterDTO memberInfoAdapterDTO = memberInfoList.stream().filter(item -> item.getId().equals(videoCommentDTO.getMemberId())).findAny().get();
             videoCommentDTO.setMemberId(memberInfoAdapterDTO.getId());
             videoCommentDTO.setAvatar(memberInfoAdapterDTO.getAvatar());
             videoCommentDTO.setNickname(memberInfoAdapterDTO.getNickname());
+
+            //设置自己是否点赞和点赞数
+            if(finalMemberId != null) {
+                Integer hasLiked = likeFactory.getLikeStrategy(LikeTypeEnum.COMMENT.getCode()).isLike(videoCommentDTO.getId(), finalMemberId);
+                videoCommentDTO.setIsLiked(hasLiked);
+            }else {
+                videoCommentDTO.setIsLiked(0);
+            }
+            Integer likeCount = likeFactory.getLikeStrategy(LikeTypeEnum.COMMENT.getCode()).getLikeCount(videoCommentDTO.getId());
+            videoCommentDTO.setLikeCount(likeCount);
+
             return videoCommentDTO;
         });
         return videoCommentDTOIPage;

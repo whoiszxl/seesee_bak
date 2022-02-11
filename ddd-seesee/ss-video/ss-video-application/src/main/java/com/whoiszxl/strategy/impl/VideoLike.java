@@ -6,7 +6,7 @@ import com.whoiszxl.strategy.LikeStrategy;
 import org.springframework.stereotype.Component;
 
 /**
- * TODO
+ * 视频点赞策略实现
  *
  * @author whoiszxl
  * @date 2021/12/8
@@ -20,7 +20,7 @@ public class VideoLike extends LikeStrategy {
     }
 
     @Override
-    public boolean isLike(Long id, Long memberId) {
+    public Integer isLike(Long id, Long memberId) {
         return isLike(id, memberId, LikeTypeEnum.VIDEO);
     }
 

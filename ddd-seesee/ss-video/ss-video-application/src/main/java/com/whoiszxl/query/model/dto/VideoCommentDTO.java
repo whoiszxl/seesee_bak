@@ -1,5 +1,7 @@
 package com.whoiszxl.query.model.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -15,10 +17,18 @@ import java.time.LocalDateTime;
 public class VideoCommentDTO {
 
     @ApiModelProperty("评论主键ID")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     @ApiModelProperty("视频ID")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long videoId;
+
+    @ApiModelProperty("点赞数")
+    private Integer likeCount;
+
+    @ApiModelProperty("自己是否点赞")
+    private Integer isLiked;
 
     @ApiModelProperty("会员ID")
     private Long memberId;

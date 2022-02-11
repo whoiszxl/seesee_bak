@@ -14,13 +14,13 @@ public interface CommentApplicationService {
      * 评论点赞
      * @param commentId
      */
-    void commentLike(Long commentId);
+    void commentLike(String commentId);
 
     /**
      * 评论取消点赞
      * @param commentId
      */
-    void commentLikeDislike(Long commentId);
+    void commentLikeDislike(String commentId);
 
     /**
      * 提交评论

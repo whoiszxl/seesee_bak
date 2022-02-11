@@ -48,14 +48,14 @@ public class CommentController {
 
     @PostMapping("/like/{commentId}")
     @ApiOperation(value = "评论点赞", notes = "点赞", response = Boolean.class)
-    public ResponseResult<Boolean> commentLike(@PathVariable Long commentId) {
+    public ResponseResult<Boolean> commentLike(@PathVariable String commentId) {
         commentApplicationService.commentLike(commentId);
         return ResponseResult.buildSuccess();
     }
 
     @PostMapping("/dislike/{commentId}")
     @ApiOperation(value = "评论取消点赞", notes = "取消点赞", response = Boolean.class)
-    public ResponseResult<Boolean> commentLikeDislike(@PathVariable Long commentId) {
+    public ResponseResult<Boolean> commentLikeDislike(@PathVariable String commentId) {
         commentApplicationService.commentLikeDislike(commentId);
         return ResponseResult.buildSuccess();
     }

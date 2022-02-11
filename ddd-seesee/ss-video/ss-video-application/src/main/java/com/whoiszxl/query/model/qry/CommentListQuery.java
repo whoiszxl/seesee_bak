@@ -16,8 +16,8 @@ import lombok.Data;
 public class CommentListQuery extends PageQuery {
 
     @ApiModelProperty("视频ID")
-    private Long videoId;
+    private String videoId;
 
     @ApiModelProperty("父评论ID")
-    private Long commentId;
+    private String commentId;
 }
