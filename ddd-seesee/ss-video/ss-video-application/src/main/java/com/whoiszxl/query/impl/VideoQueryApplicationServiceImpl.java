@@ -12,6 +12,7 @@ import com.whoiszxl.enums.LikeTypeEnum;
 import com.whoiszxl.model.query.PageQuery;
 import com.whoiszxl.query.VideoQueryApplicationService;
 import com.whoiszxl.query.model.dto.VideoDTO;
+import com.whoiszxl.query.model.qry.MemberTimelineQuery;
 import com.whoiszxl.strategy.LikeFactory;
 import com.whoiszxl.utils.AuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +114,44 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
 
             //设置是否点赞过
             Integer hasLiked = likeFactory.getLikeStrategy(LikeTypeEnum.VIDEO.getCode()).isLike(videoPO.getId(), finalMemberId);
+            videoDTO.setHasLiked(hasLiked);
+
+            return videoDTO;
+        });
+    }
+
+    @Override
+    public IPage<VideoDTO> timeline(MemberTimelineQuery memberTimelineQuery) {
+        Long currentMemberId = null;
+        try{
+            currentMemberId = AuthUtils.getMemberId();
+        }catch (Exception e) {
+
+        }
+        Long finalCurrentMemberId = currentMemberId;
+
+        LambdaQueryWrapper<VideoPO> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.orderByDesc(VideoPO::getCreatedAt);
+        lambdaQueryWrapper.eq(VideoPO::getMemberId, memberTimelineQuery.getMemberId());
+        Page<VideoPO> videoPOPage = videoMapper.selectPage(new Page<>(memberTimelineQuery.getPage(), memberTimelineQuery.getSize()), lambdaQueryWrapper);
+
+        List<Long> memberIdList = videoPOPage.getRecords().stream().map(VideoPO::getMemberId).distinct().collect(Collectors.toList());
+        List<MemberAdapterDTO> memberInfoList = memberAdapter.findMemberInfoByIds(memberIdList);
+
+        return videoPOPage.convert(videoPO -> {
+            VideoDTO videoDTO = videoCommandConverter.poToDTO(videoPO);
+            MemberAdapterDTO memberInfoAdapterDTO = memberInfoList.stream().filter(e -> e.getId().equals(videoDTO.getMemberId())).findAny().get();
+            videoDTO.setMemberId(memberInfoAdapterDTO.getId());
+            videoDTO.setAvatar(memberInfoAdapterDTO.getAvatar());
+            videoDTO.setNickname(memberInfoAdapterDTO.getNickname());
+
+            //TODO 设置计数器
+            videoDTO.setLickCount(likeFactory.getLikeStrategy(LikeTypeEnum.VIDEO.getCode()).getLikeCount(videoPO.getId()));
+            videoDTO.setCommentCount(200);
+            videoDTO.setShareCount(567);
+
+            //设置是否点赞过
+            Integer hasLiked = likeFactory.getLikeStrategy(LikeTypeEnum.VIDEO.getCode()).isLike(videoPO.getId(), finalCurrentMemberId);
             videoDTO.setHasLiked(hasLiked);
 
             return videoDTO;

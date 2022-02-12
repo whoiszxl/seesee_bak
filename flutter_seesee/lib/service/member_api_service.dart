@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter_seesee/entity/response/member_info_response.dart';
+import 'package:flutter_seesee/entity/response/profile_member_info_response.dart';
 import 'package:flutter_seesee/http/api_urls.dart';
 import 'package:flutter_seesee/http/http_manager.dart';
 import 'package:get/get.dart';
@@ -30,6 +31,12 @@ class MemberApiService extends GetxService {
     params['password'] = password;
     var result = await HttpManager.getInstance().post(url: ApiUrls.register, data: params);
     return result;
+  }
+
+  ///通过会员ID获取会员详细信息
+  Future<ProfileMemberInfoResponse> getMemberProfileById(String memberId) async {
+    var result = await HttpManager.getInstance().get(url: ApiUrls.memberProfileById + "/" + memberId);
+    return ProfileMemberInfoResponse.fromJson(result);
   }
 
 }

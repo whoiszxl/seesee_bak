@@ -51,6 +51,7 @@ public class VideoDTO implements Representation {
 
 
     @ApiModelProperty("用户ID")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long memberId;
 
     @ApiModelProperty("头像")

@@ -41,7 +41,7 @@ class HomePageController extends GetxController {
   List<VideoEntity> recommendVideoList = <VideoEntity>[].obs;
 
   int page = 1;
-  final int size = 5;
+  final int size = 30;
 
   ///获取推荐视频列表
   Future<bool> getRecommendVideoList(RefreshController refreshController) async {
@@ -57,7 +57,6 @@ class HomePageController extends GetxController {
   }
 
   void refreshRecommendVideoList(RefreshController refreshController) async {
-    print("刷新了");
     page = 1;
     recommendVideoList.clear();
     await getRecommendVideoList(refreshController);

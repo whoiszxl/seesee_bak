@@ -1,10 +1,15 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_seesee/controller/video_controller.dart';
 import 'package:flutter_seesee/entity/response/video_list_response.dart';
+import 'package:flutter_seesee/events/stop_play_event.dart';
 import 'package:flutter_seesee/pages/home/widgets/music_icon.dart';
 import 'package:flutter_seesee/pages/home/widgets/ss_video_player.dart';
 import 'package:flutter_seesee/pages/home/widgets/video_comment.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
+import 'package:flutter_seesee/router/application.dart';
+import 'package:flutter_seesee/router/router_manager.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
 
@@ -196,14 +201,23 @@ class _VideoCardState extends State<VideoCard> {
       child: Stack(
         children: <Widget>[
           //头像图片加载
-          Container(
-            width: 50,
-            height: 46,
-            decoration: BoxDecoration(
-                border: Border.all(color: ColorManager.white),
-                shape: BoxShape.circle,
-                image: DecorationImage(image: NetworkImage(img), fit: BoxFit.cover)
+          InkWell(
+            child: Container(
+              width: 50,
+              height: 46,
+              decoration: BoxDecoration(
+                  border: Border.all(color: ColorManager.white),
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: NetworkImage(img), fit: BoxFit.cover)
+              ),
             ),
+
+            onTap: () {
+              Application.eventBus.fire(StopPlayEvent());
+              Map<String,String> map = HashMap();
+              map['memberId'] = widget.videoEntity.memberId;
+              Get.toNamed(Routers.profile, parameters: map);
+            },
           ),
 
           //关注“+”

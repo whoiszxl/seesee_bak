@@ -7,6 +7,7 @@ import com.whoiszxl.command.cmd.MemberLoginCommand;
 import com.whoiszxl.command.cmd.UpdateMemberCommand;
 import com.whoiszxl.model.result.ResponseResult;
 import com.whoiszxl.query.MemberQueryApplicationService;
+import com.whoiszxl.query.model.response.MemberDetailResponse;
 import com.whoiszxl.query.model.response.MemberResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,6 +39,13 @@ public class MemberController {
         return ResponseResult.buildSuccess(memberResponse);
     }
 
+    @GetMapping("/detail/{memberId}")
+    @ApiOperation(value = "通过用户主键ID获取用户详细信息", notes = "通过用户主键ID获取用户详细信息", response = MemberDetailResponse.class)
+    public ResponseResult<MemberDetailResponse> memberDetailById(@PathVariable("memberId") String memberId) {
+        MemberDetailResponse memberDetailResponse = memberQueryApplicationService.memberDetailById(memberId);
+        return ResponseResult.buildSuccess(memberDetailResponse);
+    }
+
     @PutMapping("/update")
     @ApiOperation(value = "更新当前登录用户的详细信息", notes = "更新当前登录用户的详细信息", response = Boolean.class)
     public ResponseResult<Boolean> updateMemberInfo(@RequestBody UpdateMemberCommand updateMemberCommand) {
@@ -66,5 +74,8 @@ public class MemberController {
         StpUtil.logout();
         return ResponseResult.buildSuccess();
     }
+
+
+
 
 }

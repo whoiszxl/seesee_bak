@@ -7,6 +7,7 @@ import 'package:flutter_seesee/pages/main_page.dart';
 import 'package:flutter_seesee/pages/member/member_page.dart';
 import 'package:flutter_seesee/pages/member/qrcode_page.dart';
 import 'package:flutter_seesee/pages/message/message_page.dart';
+import 'package:flutter_seesee/pages/profile/profile_page.dart';
 import 'package:flutter_seesee/pages/search/search_page.dart';
 import 'package:flutter_seesee/pages/settings/settings_page.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ class Routers{
   static const String addVideo = '/addVideo';
   static const String message = '/friend';
   static const String member = '/member';
+  static const String profile = '/profile';
   static const String settings = '/settings';
 
   static const String search = '/search';
@@ -39,6 +41,7 @@ class RouterManager{
     GetPage(name: Routers.addVideo, page: () => const AddVideoPage()),
     GetPage(name: Routers.message, page: () => const MessagePage()),
     GetPage(name: Routers.member, page: () => MemberPage()),
+    GetPage(name: Routers.profile, page: () => ProfilePage()),
     GetPage(name: Routers.search, page: () => const SearchPage()),
     GetPage(name: Routers.login, page: () => LoginPage()),
     GetPage(name: Routers.register, page: () => RegisterPage()),

@@ -28,7 +28,7 @@ class MemberPage extends StatefulWidget {
 
 class _MemberPageState extends State<MemberPage> {
 
-  final MemberPageController _memberController = Get.find<MemberPageController>();
+  final MemberPageController _memberPageController = Get.put<MemberPageController>(MemberPageController());
 
   @override
   void initState() {
@@ -42,8 +42,8 @@ class _MemberPageState extends State<MemberPage> {
     });
 
     //获取用户信息
-    _memberController.getMemberInfo();
-    _memberController.getMyVideoList();
+    _memberPageController.getMemberInfo();
+    _memberPageController.getMyVideoList();
   }
 
   @override
@@ -56,7 +56,7 @@ class _MemberPageState extends State<MemberPage> {
     return Stack(
       children: [
         Obx(() {
-          if(_memberController.memberInfo.value == null || _memberController.memberInfo.value.username == null) {
+          if(_memberPageController.memberInfo.value == null || _memberPageController.memberInfo.value.username == null) {
             return const Center(child: Text("加载中"));
           }
           return Scaffold(
@@ -94,7 +94,7 @@ class _MemberPageState extends State<MemberPage> {
                     crossAxisCount: 3,
                     itemCount: 6,
                     itemBuilder: (BuildContext context, int index) {
-                      return _videoCard(_memberController.myVideoList[index]);
+                      return _videoCard(_memberPageController.myVideoList[index]);
                     },
 
                     staggeredTileBuilder: (int index) {
@@ -109,9 +109,9 @@ class _MemberPageState extends State<MemberPage> {
         Obx(() => DrawerController(
           child: const MemberRightMenuWidget(),
           alignment: DrawerAlignment.end,
-          isDrawerOpen: _memberController.showRightMenu.value,
+          isDrawerOpen: _memberPageController.showRightMenu.value,
           drawerCallback: (isOpen) {
-            _memberController.toggleRightMenu();
+            _memberPageController.toggleRightMenu();
           },
         ))
       ],
@@ -170,7 +170,7 @@ class _MemberPageState extends State<MemberPage> {
 
   _headerNickname() {
     return Text(
-      "@" + _memberController.memberInfo.value.nickname,
+      "@" + _memberPageController.memberInfo.value.nickname,
       style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
     );
   }
@@ -183,7 +183,7 @@ class _MemberPageState extends State<MemberPage> {
           //头像
           child: CachedNetworkImage(
             fit: BoxFit.cover,
-            imageUrl: _memberController.memberInfo.value.avatar,
+            imageUrl: _memberPageController.memberInfo.value.avatar,
             height: 100.0,
             width: 100.0,
             placeholder: (context, url) => const CircularProgressIndicator(),
@@ -206,7 +206,7 @@ class _MemberPageState extends State<MemberPage> {
           const Icon(Icons.person_add_alt_1_outlined),
 
           Obx(() => Text(
-            _memberController.memberInfo.value.username,
+            _memberPageController.memberInfo.value.username,
             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),
           )),
 
@@ -214,7 +214,7 @@ class _MemberPageState extends State<MemberPage> {
               iconSize: 25,
               padding:const EdgeInsets.all(0.0),
               onPressed: (){
-                _memberController.toggleRightMenu();
+                _memberPageController.toggleRightMenu();
               },
               icon: const Icon(Icons.more_horiz)
           ),
@@ -229,7 +229,7 @@ class _MemberPageState extends State<MemberPage> {
       children: [
         Column(
           children: [
-            Text(_memberController.memberInfo.value.attentionCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(_memberPageController.memberInfo.value.attentionCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
             const Text("关注", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
           ],
@@ -239,7 +239,7 @@ class _MemberPageState extends State<MemberPage> {
 
         Column(
           children: [
-            Text(_memberController.memberInfo.value.followerCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(_memberPageController.memberInfo.value.followerCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
             const Text("粉丝", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
           ],
@@ -249,7 +249,7 @@ class _MemberPageState extends State<MemberPage> {
 
         Column(
           children: [
-            Text(_memberController.memberInfo.value.likesCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(_memberPageController.memberInfo.value.likesCount.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
             const Text("获赞", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal)),
           ],

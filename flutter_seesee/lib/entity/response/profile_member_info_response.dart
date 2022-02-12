@@ -1,15 +1,8 @@
-class MemberInfoResponse {
+class ProfileMemberInfoResponse {
   String memberId;
   String username;
-  String password;
   String avatar;
   String nickname;
-  String googleKey;
-  num googleStatus;
-  String realName;
-  String email;
-  String phone;
-  num online;
   num gender;
   String birthday;
   String countryCode;
@@ -18,26 +11,15 @@ class MemberInfoResponse {
   String city;
   String district;
   String school;
-  String gradeLevel;
-  num loginCount;
-  num loginErrorCount;
-  String lastLogin;
   num followerCount;
   num attentionCount;
   num likesCount;
 
-  MemberInfoResponse(
+  ProfileMemberInfoResponse(
       {this.memberId,
         this.username,
-        this.password,
         this.avatar,
         this.nickname,
-        this.googleKey,
-        this.googleStatus,
-        this.realName,
-        this.email,
-        this.phone,
-        this.online,
         this.gender,
         this.birthday,
         this.countryCode,
@@ -46,27 +28,15 @@ class MemberInfoResponse {
         this.city,
         this.district,
         this.school,
-        this.gradeLevel,
-        this.loginCount,
-        this.loginErrorCount,
-        this.lastLogin,
         this.followerCount,
         this.attentionCount,
-        this.likesCount
-      });
+        this.likesCount});
 
-  MemberInfoResponse.fromJson(Map<String, dynamic> json) {
+  ProfileMemberInfoResponse.fromJson(Map<String, dynamic> json) {
     memberId = json['memberId'];
     username = json['username'];
-    password = json['password'];
     avatar = json['avatar'];
     nickname = json['nickname'];
-    googleKey = json['googleKey'];
-    googleStatus = json['googleStatus'];
-    realName = json['realName'];
-    email = json['email'];
-    phone = json['phone'];
-    online = json['online'];
     gender = json['gender'];
     birthday = json['birthday'];
     countryCode = json['countryCode'];
@@ -75,10 +45,6 @@ class MemberInfoResponse {
     city = json['city'];
     district = json['district'];
     school = json['school'];
-    gradeLevel = json['gradeLevel'];
-    loginCount = json['loginCount'];
-    loginErrorCount = json['loginErrorCount'];
-    lastLogin = json['lastLogin'];
     followerCount = json['followerCount'];
     attentionCount = json['attentionCount'];
     likesCount = json['likesCount'];
@@ -88,15 +54,8 @@ class MemberInfoResponse {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['memberId'] = memberId;
     data['username'] = username;
-    data['password'] = password;
     data['avatar'] = avatar;
     data['nickname'] = nickname;
-    data['googleKey'] = googleKey;
-    data['googleStatus'] = googleStatus;
-    data['realName'] = realName;
-    data['email'] = email;
-    data['phone'] = phone;
-    data['online'] = online;
     data['gender'] = gender;
     data['birthday'] = birthday;
     data['countryCode'] = countryCode;
@@ -105,10 +64,6 @@ class MemberInfoResponse {
     data['city'] = city;
     data['district'] = district;
     data['school'] = school;
-    data['gradeLevel'] = gradeLevel;
-    data['loginCount'] = loginCount;
-    data['loginErrorCount'] = loginErrorCount;
-    data['lastLogin'] = lastLogin;
     data['followerCount'] = followerCount;
     data['attentionCount'] = attentionCount;
     data['likesCount'] = likesCount;

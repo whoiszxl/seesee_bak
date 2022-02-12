@@ -2,6 +2,7 @@ package com.whoiszxl.query;
 
 import com.whoiszxl.dto.FollowerDTO;
 import com.whoiszxl.dto.MemberDTO;
+import com.whoiszxl.query.model.response.MemberDetailResponse;
 import com.whoiszxl.query.model.response.MemberResponse;
 
 import java.util.List;
@@ -32,4 +33,11 @@ public interface MemberQueryApplicationService {
      * @return
      */
     List<MemberDTO> findMemberInfoByIds(List<Long> memberIdList);
+
+    /**
+     * 通过用户主键ID获取用户详细信息
+     * @param memberId
+     * @return
+     */
+    MemberDetailResponse memberDetailById(String memberId);
 }

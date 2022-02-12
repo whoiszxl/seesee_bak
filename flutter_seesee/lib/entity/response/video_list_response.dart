@@ -59,7 +59,7 @@ class VideoEntity {
   num longitude;
   num latitude;
   String ip;
-  num memberId;
+  String memberId;
   String avatar;
   String nickname;
   int lickCount;

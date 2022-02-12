@@ -1,6 +1,7 @@
 
 import 'package:flutter_seesee/controller/main_page_controller.dart';
 import 'package:flutter_seesee/entity/response/member_info_response.dart';
+import 'package:flutter_seesee/entity/response/profile_member_info_response.dart';
 import 'package:flutter_seesee/entity/response/video_list_response.dart';
 import 'package:flutter_seesee/router/router_manager.dart';
 import 'package:flutter_seesee/router/sp_keys.dart';
@@ -77,6 +78,13 @@ class MemberPageController extends GetxController {
 
   void toggleRightMenu(){
     showRightMenu.value = !showRightMenu.value;
+  }
+
+  final memberProfile = ProfileMemberInfoResponse().obs;
+
+  void memberDetailById(String memberId) async {
+    ProfileMemberInfoResponse profileMemberInfoResponse = await memberApiService.getMemberProfileById(memberId);
+    memberProfile.value = profileMemberInfoResponse;
   }
 
 

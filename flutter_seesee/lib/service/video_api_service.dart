@@ -38,4 +38,14 @@ class VideoApiService extends GetxService {
     await HttpManager.getInstance().post(url: ApiUrls.videoDislike + "/" + videoId);
   }
 
+
+  Future<VideoListResponse> timeline(int page, int size, String memberId) async {
+    Map<String, dynamic> params = HashMap();
+    params["page"] = page;
+    params["size"] = size;
+    params["memberId"] = memberId;
+    var result = await HttpManager.getInstance().post(url: ApiUrls.timeline, data: params);
+    return VideoListResponse.fromJson(result);
+  }
+
 }

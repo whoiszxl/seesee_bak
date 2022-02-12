@@ -8,6 +8,7 @@ class ApiUrls {
 
   ///查询自己的视频列表
   static const String myVideoList = "/video/video/list";
+  static const String timeline = "/video/video/timeline/list";
   static const String videoLike = "/video/video/like";
   static const String videoDislike = "/video/video/dislike";
 
@@ -21,4 +22,5 @@ class ApiUrls {
   static const String login = "/member/member/login";
   static const String register = "/member/member/register";
   static const String memberDetail = "/member/member/detail";
+  static const String memberProfileById = "/member/member/detail";
 }

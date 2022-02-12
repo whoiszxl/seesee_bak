@@ -7,6 +7,7 @@ import com.whoiszxl.model.query.PageQuery;
 import com.whoiszxl.model.result.ResponseResult;
 import com.whoiszxl.query.VideoQueryApplicationService;
 import com.whoiszxl.query.model.dto.VideoDTO;
+import com.whoiszxl.query.model.qry.MemberTimelineQuery;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +68,8 @@ public class VideoController {
 
     @PostMapping("/timeline/list")
     @ApiOperation(value = "分页查询指定用户的视频列表", notes = "分页查询指定用户的视频列表", response = VideoDTO.class)
-    public ResponseResult<IPage<VideoDTO>> timeline(@RequestBody PageQuery pageQuery) {
-        IPage<VideoDTO> videoPage = videoQueryApplicationService.recommendFeedList(pageQuery);
+    public ResponseResult<IPage<VideoDTO>> timeline(@RequestBody MemberTimelineQuery memberTimelineQuery) {
+        IPage<VideoDTO> videoPage = videoQueryApplicationService.timeline(memberTimelineQuery);
         return ResponseResult.buildSuccess(videoPage);
     }
 

@@ -11,6 +11,7 @@ import com.whoiszxl.dozer.DozerUtils;
 import com.whoiszxl.dto.FollowerDTO;
 import com.whoiszxl.dto.MemberDTO;
 import com.whoiszxl.query.MemberQueryApplicationService;
+import com.whoiszxl.query.model.response.MemberDetailResponse;
 import com.whoiszxl.query.model.response.MemberResponse;
 import com.whoiszxl.utils.AssertUtils;
 import com.whoiszxl.utils.AuthUtils;
@@ -67,5 +68,15 @@ public class MemberQueryApplicationServiceImpl implements MemberQueryApplication
         List<MemberPO> memberPOList = memberMapper.selectList(Wrappers.<MemberPO>lambdaQuery().in(MemberPO::getId, memberIdList));
         List<MemberDTO> memberDTOList = dozerUtils.mapList(memberPOList, MemberDTO.class);
         return memberDTOList;
+    }
+
+    @Override
+    public MemberDetailResponse memberDetailById(String memberId) {
+        MemberPO memberPO = memberMapper.selectById(memberId);
+        MemberInfoPO memberInfoPO = memberInfoMapper.selectOne(Wrappers.<MemberInfoPO>lambdaQuery().eq(MemberInfoPO::getMemberId, memberId));
+
+        MemberDetailResponse memberDetailResponse = dozerUtils.map(memberPO, MemberDetailResponse.class);
+        dozerUtils.map(memberInfoPO, memberDetailResponse);
+        return memberDetailResponse;
     }
 }

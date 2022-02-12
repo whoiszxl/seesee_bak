@@ -3,6 +3,7 @@ package com.whoiszxl.query;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.whoiszxl.model.query.PageQuery;
 import com.whoiszxl.query.model.dto.VideoDTO;
+import com.whoiszxl.query.model.qry.MemberTimelineQuery;
 
 /**
  * 视频查询应用服务接口
@@ -21,4 +22,7 @@ public interface VideoQueryApplicationService {
     IPage<VideoDTO> attentionFeedList(PageQuery pageQuery);
 
     IPage<VideoDTO> recommendFeedList(PageQuery pageQuery);
+
+    IPage<VideoDTO> timeline(MemberTimelineQuery memberTimelineQuery);
+
 }
