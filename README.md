@@ -14,7 +14,7 @@ seesee，看看视频。基于DDD领域驱动设计的SpringCloud Alibaba短视�
 |  ----                 | ----    |
 | ss-gateway            | 80      |
 | ss-member             | 10001   |
-
+| ss-video              | 10002   |
 
 
 ### Flutter APP 截图
