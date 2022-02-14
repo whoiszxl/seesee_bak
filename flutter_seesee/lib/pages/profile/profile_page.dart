@@ -40,7 +40,6 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
     super.initState();
     Map<String, String> getParams = Get.parameters;
     memberId = getParams['memberId'];
-    print(memberId);
     memberPageController.memberDetailById(memberId);
     profilePageController.timeline(memberId);
     _refreshController.refreshCompleted();

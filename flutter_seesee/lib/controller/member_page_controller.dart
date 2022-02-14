@@ -10,7 +10,6 @@ import 'package:flutter_seesee/service/video_api_service.dart';
 import 'package:flutter_seesee/utils/sp_util.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///用户页面的getx控制器
 class MemberPageController extends GetxController {
@@ -53,18 +52,26 @@ class MemberPageController extends GetxController {
   List<VideoEntity> myVideoList = <VideoEntity>[].obs;
 
   int page = 1;
-  final int size = 6;
+  final int size = 10;
 
   ///获取我的视频列表
   Future<bool> getMyVideoList() async {
     var result = await Get.find<VideoApiService>().getMyVideoList(page, size);
 
     if(result != null) {
+      page++;
       myVideoList.addAll(result.records);
       return true;
     }else {
       return false;
     }
+  }
+
+  ///刷新我的视频列表
+  void refreshGetMyVideoList() async {
+    page = 1;
+    myVideoList.clear();
+    await getMyVideoList();
   }
 
   //是否展示AppBar的title

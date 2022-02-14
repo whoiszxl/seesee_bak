@@ -99,7 +99,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.lionsoul:ip2region:1.7.2" level="project" />
     <orderEntry type="library" name="Maven: eu.bitwalker:UserAgentUtils:1.21" level="project" />
-    <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.7" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.3.2.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.springfox:springfox-boot-starter:3.0.0" level="project" />

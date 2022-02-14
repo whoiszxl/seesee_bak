@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_seesee/events/stop_play_event.dart';
-import 'package:flutter_seesee/pages/home/city_tab_page.dart';
 import 'package:flutter_seesee/pages/home/follow_tab_page.dart';
 import 'package:flutter_seesee/pages/home/recommend_tab_page.dart';
+import 'package:flutter_seesee/res/colors_manager.dart';
 import 'package:flutter_seesee/router/application.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(length: 3, initialIndex: 2, child: _body());
+    return DefaultTabController(length: 2, initialIndex: 1, child: _body());
   }
 
   Widget _body() {
@@ -32,12 +32,13 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<
           const TabBarView(
             children: [
               //城市tab，关注tab，推荐tab
-              CityTabPage(), FollowTabPage(), RecommendTabPage(),
+              FollowTabPage(), RecommendTabPage(),
             ],
           ),
           Positioned(
             top: 45,
-            child: SizedBox(
+            child: Container(
+              color: Colors.transparent,
               width: _size.width,
               height: 50,
               child: Row(
@@ -56,16 +57,18 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<
                   //tab 卡片
                   Expanded(
                     child: Padding(
-                        padding: const EdgeInsets.only(left: 40, right: 40, top: 10, bottom: 15),
+                        padding: const EdgeInsets.only(left: 90, right: 90, top: 10, bottom: 15),
                         child: Center(
                           child: TabBar(
                             onTap: (index){
-                              Application.eventBus.fire(StopPlayEvent());
+                              if(index == 0) {
+                                Application.eventBus.fire(StopPlayEvent());
+                              }
                             },
-                            indicatorColor: Colors.white,
+                            indicatorColor: ColorManager.white,
                             indicatorSize: TabBarIndicatorSize.label,
+                            labelColor: ColorManager.white,
                             tabs: [
-                              Tab(text: 'city'.tr),
                               Tab(text: 'focus'.tr),
                               Tab(text: 'recommend'.tr),
                             ],

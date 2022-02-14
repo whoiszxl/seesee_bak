@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_seesee/controller/main_page_controller.dart';
-import 'package:flutter_seesee/pages/friend/friend_page.dart';
+import 'package:flutter_seesee/pages/city/city_page.dart';
 import 'package:flutter_seesee/pages/home/home_page.dart';
 import 'package:flutter_seesee/pages/home/widgets/ss_buttom_navigation_bar.dart';
 import 'package:flutter_seesee/pages/member/member_page.dart';
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage>{
       case 0:
         return HomePage();
       case 1:
-        return FriendPage();
+        return CityPage();
       case 2:
         return const MessagePage();
       case 3:

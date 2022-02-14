@@ -48,7 +48,7 @@ class _SSBottomNavigationBarState extends State<SSBottomNavigationBar>{
       child: Row(
         children: [
           Expanded(flex: 1, child: _getAnimatedText('home'.tr, 0)),
-          Expanded(flex: 1, child: _getAnimatedText('friend'.tr, 1)),
+          Expanded(flex: 1, child: _getAnimatedText('city'.tr, 1)),
           Expanded(
               flex: 1,
               child:InkWell(

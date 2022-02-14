@@ -1,5 +1,5 @@
 import 'package:flutter_seesee/pages/add_video/add_video_page.dart';
-import 'package:flutter_seesee/pages/friend/friend_page.dart';
+import 'package:flutter_seesee/pages/city/city_page.dart';
 import 'package:flutter_seesee/pages/home/home_page.dart';
 import 'package:flutter_seesee/pages/login/login_page.dart';
 import 'package:flutter_seesee/pages/login/register_page.dart';
@@ -30,6 +30,8 @@ class Routers{
 
   static const String qrcode = '/qrcode';
 
+  static const String videoDetail = '/videoDetail';
+
 }
 
 ///路由管理者
@@ -37,7 +39,7 @@ class RouterManager{
   static final routes = [
     GetPage(name: Routers.main, page: () => const MainPage()),
     GetPage(name: Routers.home, page: () => const HomePage()),
-    GetPage(name: Routers.friend, page: () => const FriendPage()),
+    GetPage(name: Routers.friend, page: () => const CityPage()),
     GetPage(name: Routers.addVideo, page: () => const AddVideoPage()),
     GetPage(name: Routers.message, page: () => const MessagePage()),
     GetPage(name: Routers.member, page: () => MemberPage()),

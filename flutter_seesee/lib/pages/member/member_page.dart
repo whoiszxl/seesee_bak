@@ -10,6 +10,8 @@ import 'package:flutter_seesee/router/sp_keys.dart';
 import 'package:flutter_seesee/utils/sp_util.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:oktoast/oktoast.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///我的页面
 class MemberPage extends StatefulWidget {
@@ -29,6 +31,10 @@ class MemberPage extends StatefulWidget {
 class _MemberPageState extends State<MemberPage> {
 
   final MemberPageController _memberPageController = Get.put<MemberPageController>(MemberPageController());
+
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
+
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -53,68 +59,105 @@ class _MemberPageState extends State<MemberPage> {
   @override
   Widget build(BuildContext context) {
 
-    return Stack(
-      children: [
-        Obx(() {
-          if(_memberPageController.memberInfo.value == null || _memberPageController.memberInfo.value.username == null) {
-            return const Center(child: Text("加载中"));
-          }
-          return Scaffold(
-              resizeToAvoidBottomInset: false,
-              body: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  //title组件
-                  _headerTitle(),
-                  const SizedBox(height: 15),
+    return Scaffold(
+      body: SmartRefresher(
+          enablePullDown: true,
+          enablePullUp: true,
+          onRefresh: _onRefresh,
+          onLoading: _onLoading,
+          header: const ClassicHeader(
+            refreshingText: "刷新中",
+            releaseText: "刷新中",
+            completeText: "刷新完成",
+          ),
+          footer: const ClassicFooter(
+            loadingText: "加载中",
+            failedText: "加载失败",
+            idleText: "加载中",
+            canLoadingText: "加载中",
+            noDataText: "没有更多商品了",
+          ),
+          controller: _refreshController,
+          child: _son()
+      ),
+    );
+  }
 
-                  //头像组件
-                  _headerAvatar(),
-                  const SizedBox(height: 10),
+  void _onRefresh() async{
+    _memberPageController.refreshGetMyVideoList();
+    _refreshController.refreshCompleted();
+  }
 
-                  //昵称
-                  _headerNickname(),
-                  const SizedBox(height: 2),
+  void _onLoading() async {
+    _memberPageController.getMyVideoList();
+    _refreshController.loadComplete();
 
-                  //关注数，粉丝数，点赞数
-                  _countTab(),
-                  const SizedBox(height: 15),
+  }
 
-                  //编辑资料按钮
-                  _editInfoButton(),
-                  const SizedBox(height: 25),
+  _son() {
+    return SingleChildScrollView(
+      child: Stack(
+        children: [
+          Obx(() {
+            if(_memberPageController.memberInfo.value == null || _memberPageController.memberInfo.value.username == null) {
+              return const Center(child: Text("加载中"));
+            }
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                //title组件
+                _headerTitle(),
+                const SizedBox(height: 15),
 
-                  //tab切换栏
-                  _tabs(),
+                //头像组件
+                _headerAvatar(),
+                const SizedBox(height: 10),
 
-                  //我的视频列表
-                  StaggeredGridView.countBuilder(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(top: 10, left: 4, right: 4),
-                    crossAxisCount: 3,
-                    itemCount: 6,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _videoCard(_memberPageController.myVideoList[index]);
-                    },
+                //昵称
+                _headerNickname(),
+                const SizedBox(height: 2),
 
-                    staggeredTileBuilder: (int index) {
-                      return const StaggeredTile.fit(1);
-                    },
-                  )
+                //关注数，粉丝数，点赞数
+                _countTab(),
+                const SizedBox(height: 15),
 
-                ],
-              )
-          );
-        }),
-        Obx(() => DrawerController(
-          child: const MemberRightMenuWidget(),
-          alignment: DrawerAlignment.end,
-          isDrawerOpen: _memberPageController.showRightMenu.value,
-          drawerCallback: (isOpen) {
-            _memberPageController.toggleRightMenu();
-          },
-        ))
-      ],
+                //编辑资料按钮
+                _editInfoButton(),
+                const SizedBox(height: 25),
+
+                //tab切换栏
+                _tabs(),
+
+                //我的视频列表
+                StaggeredGridView.countBuilder(
+                  controller: scrollController,
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(top: 10, left: 4, right: 4),
+                  crossAxisCount: 3,
+                  itemCount: _memberPageController.myVideoList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _videoCard(_memberPageController.myVideoList[index]);
+                  },
+
+                  staggeredTileBuilder: (int index) {
+                    return const StaggeredTile.fit(1);
+                  },
+                )
+
+              ],
+            );
+          }),
+          Obx(() => DrawerController(
+            child: const MemberRightMenuWidget(),
+            alignment: DrawerAlignment.end,
+            isDrawerOpen: _memberPageController.showRightMenu.value,
+            drawerCallback: (isOpen) {
+              showToast(isOpen.toString());
+              _memberPageController.toggleRightMenu();
+            },
+          ))
+        ],
+      ),
     );
   }
 

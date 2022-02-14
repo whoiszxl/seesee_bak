@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_seesee/entity/response/profile_member_info_response.dart';
-import 'package:flutter_seesee/pages/login/widgets/rounded_button.dart';
-import 'package:flutter_seesee/pages/profile/widgets/member_header_tag.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
 import 'package:flutter_seesee/utils/image_util.dart';
 import 'package:oktoast/oktoast.dart';
@@ -187,20 +185,10 @@ class ProfileHeader extends StatelessWidget {
         color: bgColor,
         padding: const EdgeInsets.only(left: 3, right: 3),
         margin: const EdgeInsets.only(left: 6),
-        alignment: Alignment.centerLeft,
-        height: 12,
+        alignment: Alignment.centerRight,
+        height: 14,
         child: Text(text, style: TextStyle(color: fontColor, fontSize: 8))
     );
   }
 
-  Widget tag(String tagValue) {
-    return Tag(
-      color: Colors.black12,
-      borderColor: Colors.black12,
-      borderWidth: 0,
-      margin: const EdgeInsets.only(top: 2, right: 2),
-      height: 12,
-      text: Text(tagValue, style: const TextStyle(color: ColorManager.white, fontSize: 8)),
-    );
-  }
 }

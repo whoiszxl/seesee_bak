@@ -40,6 +40,8 @@ class HomePageController extends GetxController {
 
   List<VideoEntity> recommendVideoList = <VideoEntity>[].obs;
 
+  var isFirstTab = false.obs;
+
   int page = 1;
   final int size = 30;
 
