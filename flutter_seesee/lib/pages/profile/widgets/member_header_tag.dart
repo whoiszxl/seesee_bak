@@ -11,7 +11,7 @@ class Tag extends StatelessWidget {
   final EdgeInsets padding;
   final EdgeInsets margin;
   final double borderWidth;
-  Tag(
+  const Tag(
       {Key key,
         this.text,
         this.alignment = Alignment.center,

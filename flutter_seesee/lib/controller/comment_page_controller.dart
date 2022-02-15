@@ -36,6 +36,7 @@ class CommentPageController extends GetxController {
       refreshController.loadComplete();
       return true;
     }else {
+      refreshController.loadNoData();
       return false;
     }
   }

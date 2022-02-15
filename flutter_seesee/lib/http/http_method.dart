@@ -1,12 +1,12 @@
 class HttpMethod{
 
-  static const String GET = "GET";
+  static const String get = "GET";
 
-  static const String POST = "POST";
+  static const String post = "POST";
 
-  static const String PUT = "PUT";
+  static const String put = "PUT";
 
-  static const String PATCH = "PATCH";
+  static const String patch = "PATCH";
 
-  static const String DELETE = "DELETE";
+  static const String delete = "DELETE";
 }

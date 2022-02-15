@@ -49,7 +49,7 @@ public class CommentQueryApplicationServiceImpl implements CommentQueryApplicati
         lambdaQueryWrapper.eq(VideoCommentPO::getParentId, commentListQuery.getCommentId());
 
         Page<VideoCommentPO> videoCommentPOPage = videoCommentMapper.selectPage(new Page<>(commentListQuery.getPage(), commentListQuery.getSize()), lambdaQueryWrapper);
-        if(videoCommentPOPage.getTotal() == 0) {
+        if(videoCommentPOPage.getRecords().isEmpty()) {
             return null;
         }
 

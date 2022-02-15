@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_seesee/controller/member_page_controller.dart';
-import 'package:flutter_seesee/controller/video_controller.dart';
 import 'package:flutter_seesee/entity/response/video_list_response.dart';
 import 'package:flutter_seesee/pages/member/widgets/member_right_menu_widget.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
@@ -18,9 +17,7 @@ class MemberPage extends StatefulWidget {
 
   PageController pageController;
 
-  MemberPage({Key key, PageController pageController}) : super(key: key) {
-    pageController = pageController;
-  }
+  MemberPage({Key key, this.pageController}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -49,7 +46,7 @@ class _MemberPageState extends State<MemberPage> {
 
     //获取用户信息
     _memberPageController.getMemberInfo();
-    _memberPageController.getMyVideoList();
+    _memberPageController.getMyVideoList(_refreshController);
   }
 
   @override
@@ -75,7 +72,7 @@ class _MemberPageState extends State<MemberPage> {
             failedText: "加载失败",
             idleText: "加载中",
             canLoadingText: "加载中",
-            noDataText: "没有更多商品了",
+            noDataText: "没有更多视频了",
           ),
           controller: _refreshController,
           child: _son()
@@ -84,12 +81,12 @@ class _MemberPageState extends State<MemberPage> {
   }
 
   void _onRefresh() async{
-    _memberPageController.refreshGetMyVideoList();
+    _memberPageController.refreshGetMyVideoList(_refreshController);
     _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
-    _memberPageController.getMyVideoList();
+    _memberPageController.getMyVideoList(_refreshController);
     _refreshController.loadComplete();
 
   }

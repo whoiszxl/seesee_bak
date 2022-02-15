@@ -152,12 +152,7 @@ class UserRightMenuItemWidget extends StatelessWidget{
   Function onTap;
   Alignment alignment;
 
-  UserRightMenuItemWidget({Key key, Icon icon,String title,Function onTap,Alignment alignment}) : super(key: key){
-    this.onTap = onTap;
-    this.title = title;
-    this.icon = icon;
-    this.alignment = alignment;
-  }
+  UserRightMenuItemWidget({Key key, this.icon, this.title, this.onTap, this.alignment}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -15,12 +15,14 @@ class FollowPageController extends GetxController {
   ///TODO 需要获取关注用户的视频列表
   Future<bool> getRecommendVideoList(RefreshController refreshController) async {
     var result = await Get.find<HomeApiService>().getRecommendVideoList(page, size);
+
     if(result != null) {
       recommendVideoList.addAll(result.records);
       page++;
       refreshController.loadComplete();
       return true;
     }else {
+      refreshController.loadNoData();
       return false;
     }
   }

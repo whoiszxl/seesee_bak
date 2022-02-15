@@ -73,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
               failedText: "加载失败",
               idleText: "加载中",
               canLoadingText: "加载中",
-              noDataText: "没有更多商品了",
+              noDataText: "没有更多视频了",
             ),
             controller: _refreshController,
             child: _son(memberPageController.memberProfile.value)
@@ -95,7 +95,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
               SSNavigationBar(
                 height: 30,
                 color: Colors.transparent,
-                statusStyle: StatusStyle.DARK_CONTENT,
+                statusStyle: StatusStyle.darkContent,
                 child: profileAppBar(context),
               ),
             ],

@@ -59,6 +59,9 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
         lambdaQueryWrapper.eq(VideoPO::getMemberId, memberId);
         lambdaQueryWrapper.orderByDesc(VideoPO::getCreatedAt);
         Page<VideoPO> videoPOPage = videoMapper.selectPage(new Page<>(pageQuery.getPage(), pageQuery.getSize()), lambdaQueryWrapper);
+        if(videoPOPage.getRecords().isEmpty()) {
+            return null;
+        }
         return videoPOPage.convert(videoPO -> videoCommandConverter.poToDTO(videoPO));
     }
 
@@ -97,8 +100,13 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
         lambdaQueryWrapper.orderByDesc(VideoPO::getCreatedAt);
         Page<VideoPO> videoPOPage = videoMapper.selectPage(new Page<>(pageQuery.getPage(), pageQuery.getSize()), lambdaQueryWrapper);
 
+        if(videoPOPage.getRecords().isEmpty()) {
+            return null;
+        }
+
         List<Long> memberIdList = videoPOPage.getRecords().stream().map(VideoPO::getMemberId).distinct().collect(Collectors.toList());
         List<MemberAdapterDTO> memberInfoList = memberAdapter.findMemberInfoByIds(memberIdList);
+
 
         return videoPOPage.convert(videoPO -> {
             VideoDTO videoDTO = videoCommandConverter.poToDTO(videoPO);
@@ -134,6 +142,9 @@ public class VideoQueryApplicationServiceImpl implements VideoQueryApplicationSe
         lambdaQueryWrapper.orderByDesc(VideoPO::getCreatedAt);
         lambdaQueryWrapper.eq(VideoPO::getMemberId, memberTimelineQuery.getMemberId());
         Page<VideoPO> videoPOPage = videoMapper.selectPage(new Page<>(memberTimelineQuery.getPage(), memberTimelineQuery.getSize()), lambdaQueryWrapper);
+        if(videoPOPage.getRecords().isEmpty()) {
+            return null;
+        }
 
         List<Long> memberIdList = videoPOPage.getRecords().stream().map(VideoPO::getMemberId).distinct().collect(Collectors.toList());
         List<MemberAdapterDTO> memberInfoList = memberAdapter.findMemberInfoByIds(memberIdList);

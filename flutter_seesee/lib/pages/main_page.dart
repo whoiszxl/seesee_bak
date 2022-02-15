@@ -35,9 +35,9 @@ class _MainPageState extends State<MainPage>{
   _body() {
     switch(mainPageController.bottomPageIndex.value) {
       case 0:
-        return HomePage();
+        return const HomePage();
       case 1:
-        return CityPage();
+        return const CityPage();
       case 2:
         return const MessagePage();
       case 3:
@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage>{
 
     return Scaffold(
       body: Obx(() => _body()),
-      bottomNavigationBar: SSBottomNavigationBar(),
+      bottomNavigationBar: const SSBottomNavigationBar(),
     );
   }
 }

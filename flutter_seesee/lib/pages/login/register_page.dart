@@ -4,7 +4,6 @@ import 'package:flutter_seesee/pages/login/widgets/already_have_an_account_achec
 import 'package:flutter_seesee/pages/login/widgets/or_divider.dart';
 import 'package:flutter_seesee/pages/login/widgets/rounded_button.dart';
 import 'package:flutter_seesee/pages/login/widgets/rounded_input_field.dart';
-import 'package:flutter_seesee/pages/login/widgets/rounded_password_field.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
 import 'package:flutter_seesee/router/router_manager.dart';
 import 'package:get/get.dart';
@@ -84,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Get.offNamed(Routers.login);
             },
           ),
-          OrDivider(),
+          const OrDivider(),
 
         ],
       ),

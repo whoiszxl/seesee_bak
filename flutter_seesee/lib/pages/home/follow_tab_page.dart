@@ -66,13 +66,12 @@ class _FollowTabPageState extends State<FollowTabPage> with AutomaticKeepAliveCl
             failedText: "加载失败",
             idleText: "加载中",
             canLoadingText: "加载中",
-            noDataText: "没有更多商品了",
+            noDataText: "没有更多视频了",
           ),
           controller: _refreshController,
           child: _buildFollowTab(context),
       ),
     );
-
   }
 
   _buildFollowTab(BuildContext context) {
@@ -96,16 +95,18 @@ class _FollowTabPageState extends State<FollowTabPage> with AutomaticKeepAliveCl
               StaggeredGridView.countBuilder(
                 controller: ScrollController(),
                 shrinkWrap: true,
+                mainAxisSpacing: 4.0,
+                crossAxisSpacing: 4.0,
+                crossAxisCount: 4,
                 physics: const NeverScrollableScrollPhysics (),
                 padding: const EdgeInsets.only(top: 10, left: 4, right: 4),
-                crossAxisCount: 2,
                 itemCount: _followPageController.recommendVideoList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return FollowTabVideoCard(videoEntity:  _followPageController.recommendVideoList[index]);
                 },
 
                 staggeredTileBuilder: (int index) {
-                  return const StaggeredTile.fit(1);
+                  return StaggeredTile.count(2, index == 0 ? 2.5 : 3);
                 },
               ),
             ],

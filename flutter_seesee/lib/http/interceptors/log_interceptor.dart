@@ -204,7 +204,7 @@ class LogInterceptors extends Interceptor {
       var value = data[key];
 //      key = '\"$key\"';
       if (value is String) {
-        value = '\"${value.toString().replaceAll(RegExp(r'(\r|\n)+'), " ")}\"';
+        value = '"${value.toString().replaceAll(RegExp(r'(\r|\n)+'), " ")}"';
       }
       if (value is Map) {
         if (compact && _canFlattenMap(value)) {

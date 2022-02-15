@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_seesee/entity/dto/error_dto.dart';
 import 'package:flutter_seesee/http/api_urls.dart';
 import 'package:flutter_seesee/http/base_response.dart';
 import 'package:flutter_seesee/http/http_error.dart';
@@ -12,8 +13,8 @@ class HttpManager {
   final Map<String, CancelToken> _cancelTokens = {};
 
   ///默认的超时时间
-  static const int CONNECT_TIMEOUT = 30 * 1000;
-  static const int RECEIVE_TIMEOUT = 30 * 1000;
+  static const int connectTimeout = 30 * 1000;
+  static const int receiveTimeout = 30 * 1000;
 
   Dio _dio,_dioUpload;
 
@@ -27,8 +28,8 @@ class HttpManager {
     if (null == _dio) {
       BaseOptions options = BaseOptions(
         baseUrl: ApiUrls.baseUrl,
-        connectTimeout: CONNECT_TIMEOUT,
-        receiveTimeout: RECEIVE_TIMEOUT,
+        connectTimeout: connectTimeout,
+        receiveTimeout: receiveTimeout,
       );
       _dio = Dio(options);
       //添加拦截器
@@ -39,8 +40,8 @@ class HttpManager {
     //初始化操作
     if (null == _dioUpload) {
       BaseOptions options = BaseOptions(
-        connectTimeout: CONNECT_TIMEOUT,
-        receiveTimeout: RECEIVE_TIMEOUT,
+        connectTimeout: connectTimeout,
+        receiveTimeout: receiveTimeout,
       );
       _dioUpload = Dio(options);
       //添加拦截器
@@ -52,9 +53,7 @@ class HttpManager {
   factory HttpManager.getInstance() => _getInstance();
 
   static HttpManager _getInstance() {
-    if (null == _instance) {
-      _instance = HttpManager._internal();
-    }
+    _instance ??= HttpManager._internal();
     return _instance;
   }
 
@@ -67,7 +66,7 @@ class HttpManager {
       }) async {
     return await _requestHttp(
       url: url,
-      method: HttpMethod.GET,
+      method: HttpMethod.get,
       params: params,
       options: options,
     );
@@ -82,7 +81,7 @@ class HttpManager {
       }) async {
     return await _requestHttp(
       url: url,
-      method: HttpMethod.POST,
+      method: HttpMethod.post,
       params: params,
       data: data,
       options: options,
@@ -99,7 +98,7 @@ class HttpManager {
       }) async {
     return await _requestHttp(
       url: url,
-      method: HttpMethod.PUT,
+      method: HttpMethod.put,
       params: params,
       data: data,
       options: options,
@@ -116,7 +115,7 @@ class HttpManager {
       }) async {
     return await _requestHttp(
       url: url,
-      method: HttpMethod.DELETE,
+      method: HttpMethod.delete,
       params: params,
       data: data,
       options: options,
@@ -133,7 +132,7 @@ class HttpManager {
     //检查网络是否连接
     ConnectivityResult connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
-      throw (HttpError(HttpError.NETWORK_ERROR, "网络异常，请检查网络"));
+      throw (HttpError(HttpError.networkError, "网络异常，请检查网络"));
     }
 
     //设置默认值
@@ -155,13 +154,14 @@ class HttpManager {
         if(response.data['code'] == 0){
           return BaseResponse.fromJson(response.data).data;
         }else{
-          print("接口发生异常：" + response.data['message']);
-          return BaseResponse.fromJson(response.data).data;
+          debugPrint("接口发生异常：" + response.data['message']);
+          var data = BaseResponse.fromJson(response.data);
+          return ErrorDTO(errorCode: data.code, errorMessage: data.message);
         }
       }
 
-    } catch(e,s){
-      print(e);
+    } catch(e){
+      debugPrint(e);
     }
 
   }
@@ -177,7 +177,7 @@ class HttpManager {
     //检查网络是否连接
     ConnectivityResult connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
-      throw (HttpError(HttpError.NETWORK_ERROR, "网络异常，请检查网络"));
+      throw (HttpError(HttpError.networkError, "网络异常，请检查网络"));
     }
 
     //设置默认值
@@ -199,9 +199,11 @@ class HttpManager {
       }else{
         return false;
       }
-    } catch(e,s){
-      print(e);
+    } catch(e){
+      debugPrint(e);
     }
+
+    return true;
 
   }
 
@@ -214,7 +216,7 @@ class HttpManager {
     // /gysw/search/hist/:user_id        user_id=27
     // 最终生成 url 为     /gysw/search/hist/27
     params.forEach((key, value) {
-      if (url.indexOf(key) != -1) {
+      if (url.contains(key)) {
         url = url.replaceAll(':$key', value.toString());
       }
     });

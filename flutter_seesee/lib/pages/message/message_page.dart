@@ -35,7 +35,7 @@ class _MessagePageState extends State<MessagePage>{
               height: 50,
               child: normalAppBar(context, "doremi"),
               color: ColorManager.white,
-              statusStyle: StatusStyle.LIGHT_CONTENT,
+              statusStyle: StatusStyle.lightContent,
             ),
 
             Padding(

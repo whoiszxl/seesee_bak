@@ -37,7 +37,7 @@ class _QrcodePageState extends State<QrcodePage>{
             SSNavigationBar(
               height: 30,
               color: ColorManager.white,
-              statusStyle: StatusStyle.DARK_CONTENT,
+              statusStyle: StatusStyle.darkContent,
               child: qrcodeAppBar(context),
             ),
 

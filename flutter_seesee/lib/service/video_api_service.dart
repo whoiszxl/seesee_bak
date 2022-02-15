@@ -1,6 +1,5 @@
 import 'dart:collection';
 
-import 'package:flutter_seesee/entity/response/comment_list_response.dart';
 import 'package:flutter_seesee/entity/response/video_list_response.dart';
 import 'package:flutter_seesee/http/api_urls.dart';
 import 'package:flutter_seesee/http/http_manager.dart';
@@ -15,6 +14,9 @@ class VideoApiService extends GetxService {
     params["page"] = page;
     params["size"] = size;
     var result = await HttpManager.getInstance().post(url: ApiUrls.homeRecommendVideoList, data: params);
+    if(result == null) {
+      return null;
+    }
     return VideoListResponse.fromJson(result);
   }
 
@@ -24,6 +26,9 @@ class VideoApiService extends GetxService {
     params["page"] = page;
     params["size"] = size;
     var result = await HttpManager.getInstance().post(url: ApiUrls.myVideoList, data: params);
+    if(result == null) {
+      return null;
+    }
     return VideoListResponse.fromJson(result);
   }
 
@@ -45,6 +50,9 @@ class VideoApiService extends GetxService {
     params["size"] = size;
     params["memberId"] = memberId;
     var result = await HttpManager.getInstance().post(url: ApiUrls.timeline, data: params);
+    if(result == null) {
+      return null;
+    }
     return VideoListResponse.fromJson(result);
   }
 

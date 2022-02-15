@@ -1,7 +1,6 @@
 import 'dart:collection';
 
 import 'package:flutter_seesee/entity/response/comment_list_response.dart';
-import 'package:flutter_seesee/entity/response/video_list_response.dart';
 import 'package:flutter_seesee/http/api_urls.dart';
 import 'package:flutter_seesee/http/http_manager.dart';
 import 'package:get/get.dart';
@@ -17,6 +16,9 @@ class CommentApiService extends GetxService {
     params["videoId"] = videoId;
     params["commentId"] = commentId;
     var result = await HttpManager.getInstance().post(url: ApiUrls.commentList, data: params);
+    if(result == null) {
+      return null;
+    }
     return CommentListResponse.fromJson(result);
   }
 
@@ -26,7 +28,7 @@ class CommentApiService extends GetxService {
     params["commentText"] = commentText;
     params["parentId"] = parentId;
     var result = await HttpManager.getInstance().post(url: ApiUrls.commentPublish, data: params);
-    return true;
+    return result;
   }
 
   ///评论点赞

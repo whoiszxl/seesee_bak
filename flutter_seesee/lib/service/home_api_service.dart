@@ -15,6 +15,9 @@ class HomeApiService extends GetxService {
     params["page"] = page;
     params["size"] = size;
     var result = await HttpManager.getInstance().post(url: ApiUrls.homeRecommendVideoList, data: params);
+    if(result == null) {
+      return null;
+    }
     return VideoListResponse.fromJson(result);
   }
 
@@ -26,6 +29,9 @@ class HomeApiService extends GetxService {
     params["videoId"] = videoId;
     params["commentId"] = commentId;
     var result = await HttpManager.getInstance().post(url: ApiUrls.commentList, data: params);
+    if(result == null) {
+      return null;
+    }
     return CommentListResponse.fromJson(result);
   }
 }

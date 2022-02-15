@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
 
 
-enum StatusStyle { LIGHT_CONTENT, DARK_CONTENT }
+enum StatusStyle { lightContent, darkContent }
 
 ///可自定义样式的导航栏
 class SSNavigationBar extends StatelessWidget {
@@ -15,7 +15,7 @@ class SSNavigationBar extends StatelessWidget {
 
   const SSNavigationBar(
       {Key key,
-        this.statusStyle = StatusStyle.DARK_CONTENT,
+        this.statusStyle = StatusStyle.darkContent,
         this.color = ColorManager.white,
         this.height = 46,
         this.child})
@@ -35,6 +35,7 @@ class SSNavigationBar extends StatelessWidget {
       isWeb = true;
     }
 
+    debugPrint("是否是web环境：" + isWeb.toString());
     //状态栏高度
     var top = MediaQuery.of(context).padding.top;
     return Container(

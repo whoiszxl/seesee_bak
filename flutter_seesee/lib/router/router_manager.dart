@@ -43,12 +43,12 @@ class RouterManager{
     GetPage(name: Routers.addVideo, page: () => const AddVideoPage()),
     GetPage(name: Routers.message, page: () => const MessagePage()),
     GetPage(name: Routers.member, page: () => MemberPage()),
-    GetPage(name: Routers.profile, page: () => ProfilePage()),
+    GetPage(name: Routers.profile, page: () => const ProfilePage()),
     GetPage(name: Routers.search, page: () => const SearchPage()),
-    GetPage(name: Routers.login, page: () => LoginPage()),
-    GetPage(name: Routers.register, page: () => RegisterPage()),
-    GetPage(name: Routers.settings, page: () => SettingsPage()),
-    GetPage(name: Routers.qrcode, page: () => QrcodePage()),
+    GetPage(name: Routers.login, page: () => const LoginPage()),
+    GetPage(name: Routers.register, page: () => const RegisterPage()),
+    GetPage(name: Routers.settings, page: () => const SettingsPage()),
+    GetPage(name: Routers.qrcode, page: () => const QrcodePage()),
   ];
 
 

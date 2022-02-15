@@ -137,7 +137,7 @@ class FollowTabHeaderState extends State<FollowTabHeader> {
       final ScanResult result = await BarcodeScanner.scan(options: options);
       return result.rawContent;
     }catch(e) {
-      print(e);
+      debugPrint(e);
       return null;
     }
   }
