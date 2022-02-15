@@ -1,0 +1,18 @@
+{
+    "id": "自增ID",
+    "memberId": "用户ID",
+    "talkId": "对话ID: 好友ID或群组ID",
+    "talkType": "对话类型: 1-好友 2-群组",
+    "createdAt": "创建时间",
+    "updatedAt": "更新时间"
+}
+
+
+{
+    "id": "自增ID",
+    "memberId": "用户ID",
+    "friendId": "好友ID",
+    "talkType": "对话类型: 1-好友 2-群组",
+    "message": "消息体",
+    "messageTime": "消息时间",
+}

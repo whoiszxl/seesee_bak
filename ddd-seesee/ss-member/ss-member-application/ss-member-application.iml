@@ -59,7 +59,7 @@
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.3" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.30" level="project" />
-    <orderEntry type="library" name="Maven: org.objenesis:objenesis:2.6" level="project" />
+    <orderEntry type="library" name="Maven: org.objenesis:objenesis:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:txw2:2.3.3" level="project" />
@@ -161,7 +161,7 @@
     <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-acl:4.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-remoting:4.7.1" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.61" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.51.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.32.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-tcnative-boringssl-static:2.0.31.Final" level="project" />
     <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-logging:4.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.rocketmq:rocketmq-srvutil:4.7.1" level="project" />
@@ -196,12 +196,12 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-oxm:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.lettuce:lettuce-core:5.3.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.51.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.51.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.51.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.51.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.51.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.51.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.32.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.32.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.32.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.32.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.32.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.32.Final" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.3.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
     <orderEntry type="module" module-name="ss-member-domain" />

@@ -17,6 +17,7 @@
         <module>ss-tools/ss-tools-logger</module>
         <module>ss-gateway</module>
         <module>ss-video</module>
+        <module>ss-chat</module>
     </modules>
 
     <name>${project.artifactId}</name>
@@ -64,6 +65,7 @@
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <springside-utils.version>5.0.0-RC1</springside-utils.version>
         <mysql-connector-java.version>8.0.27</mysql-connector-java.version>
+        <mongodb-driver.version>3.9.1</mongodb-driver.version>
         <fastjson.version>1.2.61</fastjson.version>
         <gson.version>2.8.6</gson.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
@@ -82,6 +84,9 @@
         <p6spy.version>3.8.7</p6spy.version>
         <ttl.version>2.2.0</ttl.version>
         <rocketmq.version>2.1.1</rocketmq.version>
+        <netty.version>4.1.32.Final</netty.version>
+        <protostuff.version>1.0.10</protostuff.version>
+        <objenesis.version>2.4</objenesis.version>
     </properties>
 
     <!-- springboot版本 -->
@@ -146,6 +151,12 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver-sync</artifactId>
+                <version>${mongodb-driver.version}</version>
             </dependency>
 
             <!--文件上传-->
@@ -281,6 +292,30 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
                 <version>${rocketmq.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dyuproject.protostuff</groupId>
+                <artifactId>protostuff-core</artifactId>
+                <version>${protostuff.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dyuproject.protostuff</groupId>
+                <artifactId>protostuff-runtime</artifactId>
+                <version>${protostuff.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.objenesis</groupId>
+                <artifactId>objenesis</artifactId>
+                <version>${objenesis.version}</version>
             </dependency>
 
         </dependencies>
