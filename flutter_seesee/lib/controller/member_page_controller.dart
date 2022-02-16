@@ -74,6 +74,7 @@ class MemberPageController extends GetxController {
   void refreshGetMyVideoList(RefreshController _refreshController) async {
     page = 1;
     myVideoList.clear();
+    _refreshController.refreshCompleted();
     await getMyVideoList(_refreshController);
   }
 

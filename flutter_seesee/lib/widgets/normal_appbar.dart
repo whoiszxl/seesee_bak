@@ -20,7 +20,7 @@ normalAppBar(BuildContext context, String title, {Color titleColor = ColorManage
           ),
         ),
 
-        Text(title, style: TextStyle(fontSize: 20, color: titleColor, fontWeight: FontWeight.w600)),
+        Text(title, style: TextStyle(fontSize: 20, color: titleColor, fontWeight: FontWeight.normal)),
 
         Padding(
           padding: const EdgeInsets.only(right: 2),

@@ -14,13 +14,13 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
       children: <Widget>[
         Text(
           login ? "没有账号 ? " : "已经有账号了 ? ",
-          style: const TextStyle(color: ColorManager.loginMainColor),
+          style: const TextStyle(color: ColorManager.grey),
         ),
         GestureDetector(
           onTap: press,
           child: Text(
             login ? "点击注册" : "点击登录",
-            style: const TextStyle(color: ColorManager.loginMainColor, fontWeight: FontWeight.bold),
+            style: const TextStyle(color: ColorManager.grey, fontWeight: FontWeight.bold),
           ),
         )
       ],

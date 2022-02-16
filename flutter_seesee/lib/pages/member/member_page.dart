@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_seesee/controller/member_page_controller.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_seesee/res/colors_manager.dart';
 import 'package:flutter_seesee/router/router_manager.dart';
 import 'package:flutter_seesee/router/sp_keys.dart';
 import 'package:flutter_seesee/utils/sp_util.dart';
+import 'package:flutter_seesee/widgets/normal_loading.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
@@ -62,10 +65,8 @@ class _MemberPageState extends State<MemberPage> {
           enablePullUp: true,
           onRefresh: _onRefresh,
           onLoading: _onLoading,
-          header: const ClassicHeader(
-            refreshingText: "刷新中",
-            releaseText: "刷新中",
-            completeText: "刷新完成",
+          header: const MaterialClassicHeader(
+            color: ColorManager.black,
           ),
           footer: const ClassicFooter(
             loadingText: "加载中",
@@ -82,13 +83,10 @@ class _MemberPageState extends State<MemberPage> {
 
   void _onRefresh() async{
     _memberPageController.refreshGetMyVideoList(_refreshController);
-    _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
     _memberPageController.getMyVideoList(_refreshController);
-    _refreshController.loadComplete();
-
   }
 
   _son() {
@@ -97,7 +95,7 @@ class _MemberPageState extends State<MemberPage> {
         children: [
           Obx(() {
             if(_memberPageController.memberInfo.value == null || _memberPageController.memberInfo.value.username == null) {
-              return const Center(child: Text("加载中"));
+              return normalLoading();
             }
             return Column(
               mainAxisSize: MainAxisSize.min,
@@ -106,21 +104,30 @@ class _MemberPageState extends State<MemberPage> {
                 _headerTitle(),
                 const SizedBox(height: 15),
 
-                //头像组件
-                _headerAvatar(),
-                const SizedBox(height: 10),
+                Container(
+                  child: Column(
+                    children: [
+                      //头像组件
+                      _headerAvatar(),
+                      const SizedBox(height: 10),
 
-                //昵称
-                _headerNickname(),
-                const SizedBox(height: 2),
+                      //昵称
+                      _headerNickname(),
+                      const SizedBox(height: 2),
 
-                //关注数，粉丝数，点赞数
-                _countTab(),
-                const SizedBox(height: 15),
+                      //关注数，粉丝数，点赞数
+                      _countTab(),
+                      const SizedBox(height: 15),
 
-                //编辑资料按钮
-                _editInfoButton(),
-                const SizedBox(height: 25),
+                      //编辑资料按钮
+                      _editInfoButton(() {
+                        Get.toNamed(Routers.editMember);
+                      }),
+                      const SizedBox(height: 25),
+                    ],
+                  ),
+                ),
+
 
                 //tab切换栏
                 _tabs(),
@@ -159,35 +166,43 @@ class _MemberPageState extends State<MemberPage> {
   }
 
   _videoCard(VideoEntity videoEntity) {
-    return Container(
-      height: 160,
-      decoration: BoxDecoration(color: Colors.black26, border: Border.all(color: Colors.white70, width: .5)),
-      child: FittedBox(
-        child: CachedNetworkImage(
-          fit: BoxFit.fill,
-          imageUrl: videoEntity.cover,
-          placeholder: (context, url) => const Padding(
-            padding: EdgeInsets.all(35.0),
-            child: CircularProgressIndicator(),
+    return InkWell(
+      onTap: () {
+        Get.toNamed(Routers.videoDetail, parameters: videoEntity.toStrJson());
+      },
+      child: Container(
+        height: 160,
+        decoration: BoxDecoration(color: Colors.black26, border: Border.all(color: Colors.white70, width: .5)),
+        child: FittedBox(
+          child: CachedNetworkImage(
+            fit: BoxFit.fill,
+            imageUrl: videoEntity.cover,
+            placeholder: (context, url) => const Padding(
+              padding: EdgeInsets.all(35.0),
+              child: CircularProgressIndicator(),
+            ),
+            errorWidget: (context, url, error) =>
+            const Icon(Icons.error),
           ),
-          errorWidget: (context, url, error) =>
-          const Icon(Icons.error),
+          fit: BoxFit.fill,
         ),
-        fit: BoxFit.fill,
       ),
     );
   }
 
-  _editInfoButton() {
+  _editInfoButton(Function onTap) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: 140,
-          height: 47,
-          decoration: BoxDecoration(border: Border.all(color: ColorManager.line)),
-          child: const Center(
-            child: Text("编辑资料", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            width: 140,
+            height: 47,
+            decoration: BoxDecoration(border: Border.all(color: ColorManager.line)),
+            child: const Center(
+              child: Text("编辑资料", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+            ),
           ),
         ),
         const SizedBox(width: 5),

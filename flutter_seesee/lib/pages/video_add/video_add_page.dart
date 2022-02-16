@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 ///home页面
-class AddVideoPage extends StatefulWidget {
-  const AddVideoPage({Key key}) : super(key: key);
+class VideoAddPage extends StatefulWidget {
+  const VideoAddPage({Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _AddVideoPageState();
+    return _VideoAddPageState();
   }
 }
 
-class _AddVideoPageState extends State<AddVideoPage>{
+class _VideoAddPageState extends State<VideoAddPage>{
 
   @override
   void initState() {

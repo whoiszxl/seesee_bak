@@ -68,7 +68,7 @@ class _VideoCommentState extends State<VideoComment> {
         children: [
           Positioned(
             bottom: 10,
-            child: Text(_commentPageController.commentSize.toString() + '条评论',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 13)),
+            child: Text(_commentPageController.commentCount.toString() + '条评论',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 13)),
           ),
           Positioned(right: 10,
               child: InkWell(

@@ -33,9 +33,10 @@ class _LoginPageState extends State<LoginPage>{
   _body(Size size) {
     String username = "";
     String password = "";
-    return SizedBox(
+    return Container(
       width: double.infinity,
       height: size.height,
+      color: ColorManager.main,
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
@@ -49,7 +50,7 @@ class _LoginPageState extends State<LoginPage>{
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 //标题
-                const Text("SEESEE登录", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: ColorManager.main)),
+                const Text("SEESEE登录", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: ColorManager.white)),
                 SizedBox(height: size.height * 0.03),
 
                 //输入框和按钮
@@ -73,7 +74,7 @@ class _LoginPageState extends State<LoginPage>{
                   if(!loginFlag) {
                     showToast("用户名或密码错误");
                   }
-                }),
+                }, color: ColorManager.red,),
 
                 SizedBox(height: size.height * 0.005),
                 InkWell(

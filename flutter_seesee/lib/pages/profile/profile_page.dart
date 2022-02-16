@@ -7,6 +7,7 @@ import 'package:flutter_seesee/entity/response/video_list_response.dart';
 import 'package:flutter_seesee/pages/profile/widgets/profile_header.dart';
 import 'package:flutter_seesee/res/colors_manager.dart';
 import 'package:flutter_seesee/router/router_manager.dart';
+import 'package:flutter_seesee/widgets/normal_loading.dart';
 import 'package:flutter_seesee/widgets/ss_navigation_bar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -41,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
     Map<String, String> getParams = Get.parameters;
     memberId = getParams['memberId'];
     memberPageController.memberDetailById(memberId);
-    profilePageController.timeline(memberId);
+    profilePageController.timeline(memberId, _refreshController);
     _refreshController.refreshCompleted();
   }
 
@@ -55,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
     super.build(context);
     return Obx(() {
       if(memberPageController.memberProfile.value == null || memberPageController.memberProfile.value.memberId == null) {
-        return const Center(child: Text("加载中"));
+        return normalLoading();
       }else {
         return Scaffold(
           body: SmartRefresher(
@@ -63,10 +64,8 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
             enablePullUp: true,
             onRefresh: _onRefresh,
             onLoading: _onLoading,
-            header: const ClassicHeader(
-              refreshingText: "刷新中",
-              releaseText: "刷新中",
-              completeText: "刷新完成",
+            header: const MaterialClassicHeader(
+              color: ColorManager.black,
             ),
             footer: const ClassicFooter(
               loadingText: "加载中",
@@ -145,12 +144,12 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
 
   void _onRefresh() async{
     memberPageController.memberInfo();
-    profilePageController.refreshTimeline(memberId);
+    profilePageController.refreshTimeline(memberId, _refreshController);
     _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
-    profilePageController.timeline(memberId);
+    profilePageController.timeline(memberId, _refreshController);
     _refreshController.loadComplete();
 
   }

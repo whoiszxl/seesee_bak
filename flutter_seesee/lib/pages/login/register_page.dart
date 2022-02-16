@@ -26,7 +26,8 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SizedBox(
+      body: Container(
+        color: ColorManager.black,
         height: size.height,
         width: double.infinity,
         child: Stack(
@@ -50,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Text("SEESEE注册", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: ColorManager.main)),
+          const Text("SEESEE注册", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: ColorManager.white)),
 
           SizedBox(height: size.height * 0.03),
 
@@ -69,11 +70,13 @@ class _RegisterPageState extends State<RegisterPage> {
           RoundedButton(
             text: "发送验证码",
             press: () {},
+            color: ColorManager.red,
           ),
 
           RoundedButton(
             text: "立即注册",
             press: () {},
+            color: ColorManager.red,
           ),
 
           SizedBox(height: size.height * 0.03),

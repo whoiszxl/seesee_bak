@@ -110,6 +110,28 @@ class VideoEntity {
     hasLiked = json['hasLiked'];
   }
 
+  VideoEntity.fromStrJson(Map<String, dynamic> json) {
+    id = json['id'];
+    descs = json['descs'];
+    cover = json['cover'];
+    videoUrl = json['videoUrl'];
+    seconds = num.parse(json['seconds']);
+    width = num.parse(json['width']);
+    height = num.parse(json['height']);
+    channel = json['channel'];
+    address = json['address'];
+    longitude = num.parse(json['longitude']);
+    latitude = num.parse(json['latitude']);
+    ip = json['ip'];
+    memberId = json['memberId'];
+    avatar = json['avatar'];
+    nickname = json['nickname'];
+    lickCount = int.parse(json['lickCount']);
+    commentCount = int.parse(json['commentCount']);
+    shareCount = int.parse(json['shareCount']);
+    hasLiked = int.parse(json['hasLiked']);
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
@@ -131,6 +153,30 @@ class VideoEntity {
     data['commentCount'] = commentCount;
     data['shareCount'] = shareCount;
     data['hasLiked'] = hasLiked;
+    return data;
+  }
+
+  Map<String, String> toStrJson() {
+    final Map<String, String> data = <String, String>{};
+    data['id'] = id;
+    data['descs'] = descs;
+    data['cover'] = cover;
+    data['videoUrl'] = videoUrl;
+    data['seconds'] = seconds.toString();
+    data['width'] = width.toString();
+    data['height'] = height.toString();
+    data['channel'] = channel;
+    data['address'] = address;
+    data['longitude'] = longitude.toString();
+    data['latitude'] = latitude.toString();
+    data['ip'] = ip;
+    data['memberId'] = memberId;
+    data['avatar'] = avatar;
+    data['nickname'] = nickname;
+    data['lickCount'] = lickCount.toString();
+    data['commentCount'] = commentCount.toString();
+    data['shareCount'] = shareCount.toString();
+    data['hasLiked'] = hasLiked.toString();
     return data;
   }
 }
